@@ -2,6 +2,9 @@ import Hero from "@/components/hero";
 import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
+import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
+import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
+import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 
 // Landing Page Component
 const LandingPage = () => (
@@ -30,13 +33,33 @@ const Dashboard = () => (
   </div>
 );
 
-export default async function Home() {
+
+const Index =async () => {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  return user ? <Dashboard /> : (
+    <>
+    <LandingPage />
+    <h2 className="font-medium text-lg md:text-xl mb-2 md:mb-4">Get Started</h2>
+<SignUpUserSteps />
+    </>
+  )
+}
+
+export default async function Home() {
+
+
   return (
     <main className="flex-1 w-full">
-      {user ? <Dashboard /> : <LandingPage />}
+        
+        {hasEnvVars ? <Index/> : (
+          <>
+          <h2 className="font-medium text-lg md:text-xl mb-2 md:mb-4">Get Started</h2>
+          <ConnectSupabaseSteps />
+          </>
+          )}
+      
     </main>
   );
 }
