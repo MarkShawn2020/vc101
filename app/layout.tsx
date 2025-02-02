@@ -2,6 +2,7 @@ import DeployButton from "@/components/deploy-button";
 import { EnvVarWarning } from "@/components/env-var-warning";
 import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import Logo from "@/components/logo";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
@@ -14,8 +15,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "CS Magic | CS 魔法社",
+  description: "CS Magic - Where Code Meets Magic",
 };
 
 const geistSans = Geist({
@@ -47,9 +48,10 @@ export default function RootLayout({
                   <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
                     <Link 
                       href={"/"} 
-                      className="text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
+                      className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
-                      Next.js Supabase Starter
+                      <Logo mode="svg" className="h-8 w-auto" color="currentColor" />
+                      <span>CS Magic</span>
                     </Link>
                     <DeployButton />
                   </div>
@@ -73,12 +75,12 @@ export default function RootLayout({
                 <p>
                   Powered by{" "}
                   <a
-                    href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
+                    href="https://github.com/markshawn2020"
                     target="_blank"
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    Supabase
+                    CS Magic
                   </a>
                 </p>
                 <ThemeSwitcher />
