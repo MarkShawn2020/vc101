@@ -26,6 +26,8 @@
   - Middleware
 - 🔐 [Supabase](https://supabase.com) 集成
   - 认证 & 授权
+    - 基于 Middleware 的 Session 管理
+    - 智能首页：根据登录状态自动切换内容
   - 数据库
   - Edge Functions
 - 🎨 现代化 UI/UX
@@ -49,6 +51,8 @@
 
 - [SVG 作为 React 组件使用](./docs/Best%20Practice%20-%20SVG%20as%20React%20Component.md)
 - [动态 Favicon 生成](./docs/Best%20Practice%20-%20Dynamic%20Favicon.md)
+- [智能首页实现](./docs/Best%20Practice%20-%20Smart%20Homepage.md)
+- [认证最佳实践](./docs/Best%20Practice%20-%20Authentication.md)
 - 更多文档正在编写中...
 
 ## 本地开发
