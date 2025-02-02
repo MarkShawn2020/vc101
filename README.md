@@ -48,6 +48,7 @@
 我们整理了一系列最佳实践文档：
 
 - [SVG 作为 React 组件使用](./docs/Best%20Practice%20-%20SVG%20as%20React%20Component.md)
+- [动态 Favicon 生成](./docs/Best%20Practice%20-%20Dynamic%20Favicon.md)
 - 更多文档正在编写中...
 
 ## 本地开发

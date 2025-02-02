@@ -35,7 +35,7 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <main className="flex-1 w-full flex justify-center">
+    <main className="flex-1 w-full">
       {user ? <Dashboard /> : <LandingPage />}
     </main>
   );
