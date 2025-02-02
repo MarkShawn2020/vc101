@@ -30,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
@@ -38,23 +41,35 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="min-h-screen flex flex-col items-center">
-            <div className="flex-1 w-full flex flex-col gap-20 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Next.js Supabase Starter</Link>
-                    <div className="flex items-center gap-2">
-                      <DeployButton />
-                    </div>
+            <div className="flex-1 w-full flex flex-col gap-8 md:gap-20 items-center">
+              <nav className="w-full flex justify-center border-b border-b-foreground/10">
+                <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-stretch md:items-center py-4 px-5 md:py-3">
+                  <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
+                    <Link 
+                      href={"/"} 
+                      className="text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
+                    >
+                      Next.js Supabase Starter
+                    </Link>
+                    <DeployButton />
                   </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+                  
+                  <div className="mt-4 md:mt-0 flex justify-center items-center">
+                    {!hasEnvVars ? (
+                      <EnvVarWarning />
+                    ) : (
+                      <div className="flex gap-4 items-center">
+                        <HeaderAuth />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
+              <div className="flex flex-col gap-8 md:gap-20 w-full max-w-5xl px-4 md:px-5">
                 {children}
               </div>
 
-              <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
+              <footer className="w-full flex flex-col md:flex-row items-center justify-center border-t mx-auto text-center text-xs gap-4 md:gap-8 py-8 md:py-16 px-4">
                 <p>
                   Powered by{" "}
                   <a

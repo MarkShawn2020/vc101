@@ -7,8 +7,8 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <main className="flex-1 flex flex-col gap-6 px-4">
-        <h2 className="font-medium text-xl mb-4">Next steps</h2>
+      <main className="flex-1 flex flex-col gap-4 md:gap-6 w-full">
+        <h2 className="font-medium text-lg md:text-xl mb-2 md:mb-4">Next steps</h2>
         {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
       </main>
     </>
