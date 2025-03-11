@@ -1,13 +1,12 @@
 import DeployButton from "@/components/deploy-button";
 import { EnvVarWarning } from "@/components/env-var-warning";
 import HeaderAuth from "@/components/header-auth";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import Logo from "@/components/logo";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
-import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { Geist } from "next/font/google";
 import Link from "next/link";
-import { Suspense } from "react";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -35,7 +34,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
