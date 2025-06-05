@@ -1,7 +1,7 @@
-# CS 魔法社企业级模板
+# Neurora企业级模板
 
 <div align="center">
-  <img src="./public/cs-magic_logo_1280.svg" alt="CS Magic Logo" width="120" height="120" />
+  <img src="./public/cs-magic_logo_1280.svg" alt="Neurora Logo" width="120" height="120" />
 </div>
 
 <h1 align="center">Next.js + Supabase Boilerplate</h1>
@@ -96,4 +96,4 @@ pnpm dev
 
 ## 许可
 
-MIT License © 2025 [CS Magic](https://github.com/markshawn2020)
+MIT License © 2025 [Neurora](https://github.com/markshawn2020)

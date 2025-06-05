@@ -15,8 +15,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "CS Magic | Index",
-  description: "CS Magic - Where Code Meets Magic",
+  title: "Neurora | Index",
+  description: "Neurora - Where Code Meets Magic",
 };
 
 const geistSans = Geist({
@@ -51,7 +51,7 @@ export default function RootLayout({
                       className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
                       <Logo mode="svg" className="h-8 w-auto" color="currentColor" />
-                      <span>CS Magic</span>
+                      <span>Neurora</span>
                     </Link>
                     <DeployButton />
                   </div>
@@ -80,7 +80,7 @@ export default function RootLayout({
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    CS Magic
+                    Neurora
                   </a>
                 </p>
                 <ThemeSwitcher />
