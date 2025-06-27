@@ -1,13 +1,13 @@
-# Neurora企业级模板
+# VC101
 
 <div align="center">
-  <img src="./public/logo.png" alt="Neurora Logo" width="120" height="120" />
+  <img src="./public/logo.png" alt="VC101 Logo" width="120" height="120" />
 </div>
 
-<h1 align="center">Next.js + Supabase Boilerplate</h1>
+<h1 align="center">VC101 - Vibe Coding 101</h1>
 
 <p align="center">
-  基于 Next.js 14 App Router + Supabase + Shadcn/UI 的企业级项目模板
+  基于 Next.js 14 App Router 构建的编程学习平台
 </p>
 
 <p align="center">
@@ -22,45 +22,40 @@
 - 🚀 [Next.js 14](https://nextjs.org) App Router
   - Server Components
   - Client Components
-  - Server Actions
-  - Middleware
-- 🔐 [Supabase](https://supabase.com) 集成
-  - 认证 & 授权
-    - 基于 Middleware 的 Session 管理
-    - 智能首页：根据登录状态自动切换内容
-  - 数据库
-  - Edge Functions
+  - 响应式设计
+- 📚 知识内容管理
+  - Markdown 文章渲染
+  - 目录导航
+  - 代码高亮
+  - 任务列表支持
+- 🎯 专业功能
+  - 编程技术生态系统
+  - 开发工具集合
+  - 技术洞察分享
+  - 学习任务追踪
 - 🎨 现代化 UI/UX
   - [Tailwind CSS](https://tailwindcss.com)
   - [Shadcn/UI](https://ui.shadcn.com/)
   - 响应式设计
   - 暗色模式
-  - 双模式 Logo 组件
-    - SVG 模式：支持动态颜色
-    - Image 模式：支持主题切换
 - 🛠️ 开发体验
   - TypeScript
   - ESLint
   - Prettier
-  - Husky
-  - Commitlint
 
-## 最佳实践
+## 主要模块
 
-我们整理了一系列最佳实践文档：
-
-- [SVG 作为 React 组件使用](./docs/Best%20Practice%20-%20SVG%20as%20React%20Component.md)
-- [动态 Favicon 生成](./docs/Best%20Practice%20-%20Dynamic%20Favicon.md)
-- [智能首页实现](./docs/Best%20Practice%20-%20Smart%20Homepage.md)
-- [认证最佳实践](./docs/Best%20Practice%20-%20Authentication.md)
-- 更多文档正在编写中...
+- **洞察 (Insights)** - 编程技术深度分析文章
+- **生态系统 (Ecosystem)** - 技术栈和项目展示
+- **工具集 (Arsenal)** - 实用开发工具和资源
+- **任务 (Quests)** - 学习路径和任务追踪
 
 ## 本地开发
 
 1. 克隆项目
 ```bash
-git clone https://github.com/markshawn2020/boilerplate_next-supabase.git
-cd boilerplate_next-supabase
+git clone https://github.com/the-vc101/vc101.git
+cd vc101
 ```
 
 2. 安装依赖
@@ -68,12 +63,7 @@ cd boilerplate_next-supabase
 pnpm install
 ```
 
-3. 复制环境变量
-```bash
-cp .env.example .env.local
-```
-
-4. 启动开发服务器
+3. 启动开发服务器
 ```bash
 pnpm dev
 ```
@@ -83,11 +73,14 @@ pnpm dev
 ```
 .
 ├── app/                # Next.js App Router
+│   ├── insights/       # 洞察文章页面
+│   ├── ecosystem/      # 生态系统页面
+│   ├── arsenal/        # 工具集页面
+│   └── quests/         # 任务页面
 ├── components/         # React 组件
-├── docs/              # 项目文档
 ├── lib/               # 工具函数
 ├── public/            # 静态资源
-└── types/             # TypeScript 类型定义
+└── styles/            # 样式文件
 ```
 
 ## 贡献
@@ -96,4 +89,4 @@ pnpm dev
 
 ## 许可
 
-MIT License © 2025 [Neurora](https://github.com/markshawn2020)
+MIT License © 2025 [VC101](https://github.com/the-vc101)
