@@ -7,6 +7,13 @@ import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -32,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className="bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider
@@ -44,48 +51,88 @@ export default function RootLayout({
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-8 md:gap-20 items-center">
               <nav className="w-full flex justify-center border-b border-b-foreground/10">
-                <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-stretch md:items-center py-4 px-5 md:py-3">
-                  <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
+                <div className="w-full max-w-5xl flex justify-between items-center py-3 px-4 sm:px-5">
+                  <div className="flex items-center gap-4 sm:gap-6">
                     <Link 
                       href={"/"}
-                      className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
+                      className="flex items-center gap-2 text-lg sm:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
                       {/*<Logo mode="png" className="h-8 w-auto" color="currentColor" />*/}
                       <span>VC101</span>
                     </Link>
                     
-                    {/* 主导航菜单 */}
+                    {/* 桌面端导航菜单 */}
                     <nav className="hidden md:flex items-center gap-6 text-sm">
-                      <Link href="/insights" className="hover:text-primary transition-colors">
+                      <Link href="/insights" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         💡 VC 洞见
                       </Link>
-                      <Link href="/arsenal" className="hover:text-primary transition-colors">
+                      <Link href="/arsenal" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         🔧 VC 军火库
                       </Link>
-                      <Link href="/quests" className="hover:text-primary transition-colors">
+                      <Link href="/quests" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         🏆 VC 任务
                       </Link>
-                      <Link href="/ecosystem" className="hover:text-primary transition-colors">
+                      <Link href="/ecosystem" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         🌐 VC 伙伴
                       </Link>
-                      <Link href="/resources" className="hover:text-primary transition-colors">
+                      <Link href="/resources" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         📚 VC 资源中心
                       </Link>
                     </nav>
+                    
+                    {/* 移动端导航菜单 */}
+                    <div className="md:hidden">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon" className="w-11 h-11">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <line x1="3" x2="21" y1="6" y2="6"/>
+                              <line x1="3" x2="21" y1="12" y2="12"/>
+                              <line x1="3" x2="21" y1="18" y2="18"/>
+                            </svg>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start" className="w-56">
+                          <DropdownMenuItem asChild>
+                            <Link href="/insights" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              💡 VC 洞见
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/arsenal" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              🔧 VC 军火库
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/quests" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              🏆 VC 任务
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/ecosystem" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              🌐 VC 伙伴
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/resources" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              📚 VC 资源中心
+                            </Link>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
                   </div>
                   
-                  <div className="mt-4 md:mt-0 flex justify-center items-center">
+                  <div className="flex items-center gap-2 sm:gap-4">
                     {!hasEnvVars ? (
                       <EnvVarWarning />
                     ) : (
-                      <div className="flex gap-4 items-center">
-                        <HeaderAuth />
-                      </div>
+                      <HeaderAuth />
                     )}
                   </div>
                 </div>
               </nav>
-              <div className="flex flex-col gap-8 md:gap-20 w-full max-w-5xl px-4 md:px-5">
+              <div className="flex flex-col gap-8 md:gap-20 w-full max-w-5xl px-4 sm:px-5">
                 {children}
               </div>
 
