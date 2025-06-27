@@ -78,6 +78,9 @@ export default function RootLayout({
                       <Link href="/resources" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         📚 VC 资源中心
                       </Link>
+                      <Link href="/progress" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
+                        📊 社区进展
+                      </Link>
                     </nav>
                     
                     {/* 移动端导航菜单 */}
@@ -116,6 +119,11 @@ export default function RootLayout({
                           <DropdownMenuItem asChild>
                             <Link href="/resources" className="w-full flex items-center gap-2 min-h-[44px] py-3">
                               📚 VC 资源中心
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/progress" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              📊 社区进展
                             </Link>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
