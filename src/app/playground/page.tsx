@@ -103,7 +103,7 @@ export default function PlaygroundPage() {
           </p>
           <div className="mt-4 flex items-center gap-4">
             <Button variant="outline" size="sm" asChild>
-              <Link href="/quests">
+              <Link href="/hackathon">
                 ← 返回黑客松主页
               </Link>
             </Button>

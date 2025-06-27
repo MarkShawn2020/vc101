@@ -266,7 +266,7 @@ export default function QuestsPage() {
                         {getDifficultyBadge(quest.difficulty)}
                         {quest.featured && <Badge variant="outline">⭐ 精选</Badge>}
                       </div>
-                      <Link href={`/quests/${quest.slug}`}>
+                      <Link href={`/hackathon/${quest.slug}`}>
                         <h3 className="text-xl font-semibold mb-2 hover:text-primary cursor-pointer">
                           {quest.title}
                         </h3>
@@ -451,7 +451,7 @@ export default function QuestsPage() {
                       举办时间：{quest.eventStart} - {quest.eventEnd}
                     </div>
                     <Button variant="outline" className="gap-2" asChild>
-                      <Link href={`/quests/${quest.slug}`}>
+                      <Link href={`/hackathon/${quest.slug}`}>
                         查看回顾
                         <ExternalLink className="h-4 w-4" />
                       </Link>

@@ -69,7 +69,7 @@ export default function RootLayout({
                       <Link href="/arsenal" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         🔧 VC 军火库
                       </Link>
-                      <Link href="/quests" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
+                      <Link href="/hackathon" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         💻 VC 黑客松
                       </Link>
                       <Link href="/ecosystem" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
@@ -107,7 +107,7 @@ export default function RootLayout({
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>
-                            <Link href="/quests" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                            <Link href="/hackathon" className="w-full flex items-center gap-2 min-h-[44px] py-3">
                               💻 VC 黑客松
                             </Link>
                           </DropdownMenuItem>

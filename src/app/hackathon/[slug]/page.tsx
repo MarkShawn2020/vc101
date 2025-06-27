@@ -259,10 +259,10 @@ export default async function QuestDetailPage({ params }: Props) {
     <div className="w-full max-w-6xl mx-auto px-4 py-8">
       {/* 返回按钮 */}
       <div className="mb-6">
-        <Link href="/quests">
+        <Link href="/hackathon">
           <Button variant="ghost" className="gap-2">
             <ArrowLeft className="h-4 w-4" />
-            返回任务列表
+            返回黑客松列表
           </Button>
         </Link>
       </div>
