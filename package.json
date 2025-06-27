@@ -37,7 +37,8 @@
     "remark-emoji": "^5.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
-    "remark-toc": "^9.0.0"
+    "remark-toc": "^9.0.0",
+    "styled-jsx": "^5.1.7"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",

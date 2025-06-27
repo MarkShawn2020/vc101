@@ -1,0 +1,225 @@
+.professional-report-content {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  line-height: 1.7;
+  color: #1a202c;
+  padding: 48px;
+  max-width: none;
+}
+
+.professional-report-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #3182ce;
+  position: relative;
+}
+
+.professional-report-content h1::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.professional-report-content h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 3rem 0 1.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.professional-report-content h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 4px;
+  height: 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.professional-report-content h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 2rem 0 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.professional-report-content p {
+  margin-bottom: 1.25rem;
+  color: #4a5568;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.professional-report-content ul {
+  margin: 1.5rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.professional-report-content li {
+  margin-bottom: 0.75rem;
+  padding-left: 2rem;
+  position: relative;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.professional-report-content li::before {
+  content: '▸';
+  position: absolute;
+  left: 0.5rem;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.professional-report-content strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.professional-report-content li strong {
+  color: #667eea;
+}
+
+.professional-report-content blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid #667eea;
+  background: linear-gradient(135deg, #f7fafc, #edf2f7);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #4a5568;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.professional-report-content blockquote p {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.professional-report-content pre {
+  background: #1a202c;
+  color: #e2e8f0;
+  padding: 2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #2d3748;
+}
+
+.professional-report-content code {
+  background: #f7fafc;
+  color: #e53e3e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.professional-report-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.professional-report-content a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.professional-report-content a:hover {
+  color: #2c5aa0;
+  border-bottom-color: #3182ce;
+}
+
+.professional-report-content hr {
+  margin: 3rem 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+}
+
+.professional-report-content em {
+  color: #718096;
+  font-style: italic;
+}
+
+.professional-report-content h2:first-child {
+  margin-top: 0;
+}
+
+/* 深色模式 */
+.dark .professional-report-content {
+  color: #e2e8f0;
+}
+
+.dark .professional-report-content h1 {
+  color: #f7fafc;
+}
+
+.dark .professional-report-content h2 {
+  color: #e2e8f0;
+}
+
+.dark .professional-report-content h3 {
+  color: #cbd5e0;
+  border-bottom-color: #4a5568;
+}
+
+.dark .professional-report-content p {
+  color: #cbd5e0;
+}
+
+.dark .professional-report-content li {
+  color: #cbd5e0;
+}
+
+.dark .professional-report-content strong {
+  color: #f7fafc;
+}
+
+.dark .professional-report-content blockquote {
+  background: linear-gradient(135deg, #2d3748, #4a5568);
+  color: #e2e8f0;
+}
+
+.dark .professional-report-content code {
+  background: #2d3748;
+  color: #f56565;
+  border-color: #4a5568;
+}
+
+.dark .professional-report-content a {
+  color: #63b3ed;
+}
+
+.dark .professional-report-content a:hover {
+  color: #90cdf4;
+  border-bottom-color: #63b3ed;
+}
+
+.dark .professional-report-content hr {
+  background: linear-gradient(90deg, transparent, #4a5568, transparent);
+}
