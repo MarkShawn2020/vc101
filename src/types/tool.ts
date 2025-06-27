@@ -22,10 +22,34 @@ export interface AIModel {
 }
 
 export interface ToolDownload {
-  type: 'github' | 'npm' | 'direct' | 'chrome-extension' | 'vscode-extension';
+  type: 'github' | 'npm' | 'direct' | 'chrome-extension' | 'vscode-extension' | 'mcp-server' | 'pip' | 'docker';
   url: string;
   command?: string; // for npm installations
   version?: string;
+}
+
+export interface MCPCapability {
+  type: 'resources' | 'tools' | 'prompts' | 'logging';
+  name: string;
+  description: string;
+}
+
+export interface FunctionCall {
+  name: string;
+  description: string;
+  parameters: {
+    type: string;
+    properties: Record<string, any>;
+    required?: string[];
+  };
+  examples?: string[];
+}
+
+export interface MCPServer {
+  protocol: 'stdio' | 'sse' | 'websocket';
+  transport: string;
+  capabilities: MCPCapability[];
+  configuration?: Record<string, any>;
 }
 
 export interface ToolReview {
@@ -53,6 +77,12 @@ export interface Tool {
   tags: string[];
   downloads: ToolDownload[];
   
+  // Modern AI Integration Features
+  mcpServer?: MCPServer;
+  functionCalls?: FunctionCall[];
+  supportsStreaming?: boolean;
+  contextLength?: number;
+  
   // Statistics
   downloadCount: number;
   starCount: number;
@@ -70,11 +100,19 @@ export interface Tool {
   // Status
   status: 'active' | 'deprecated' | 'beta';
   
+  // Tool Types
+  toolType: 'cli' | 'library' | 'api' | 'extension' | 'mcp-server' | 'function-toolkit' | 'agent' | 'plugin';
+  
   // Additional info
   requirements?: string[];
   changelog?: string;
   documentation?: string;
   demoUrl?: string;
+  
+  // Integration Support
+  integratesWithCursor?: boolean;
+  integratesWithClaude?: boolean;
+  integratesWithVSCode?: boolean;
 }
 
 export interface ToolListResponse {

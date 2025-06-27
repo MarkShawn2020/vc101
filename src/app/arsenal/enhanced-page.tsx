@@ -115,7 +115,19 @@ const modernTools = [
           },
           required: ["path"]
         },
-        examples: ["read_file({\"path\": \"./src/main.py\"})"]  
+        examples: ["read_file({\"path\": \"./src/main.py\"})"]
+      },
+      {
+        name: "write_file", 
+        description: "写入内容到指定文件",
+        parameters: {
+          type: "object",
+          properties: {
+            path: { type: "string", description: "文件路径" },
+            content: { type: "string", description: "文件内容" }
+          },
+          required: ["path", "content"]
+        }
       }
     ],
     
@@ -133,14 +145,90 @@ const modernTools = [
         type: "github" as const, 
         url: "https://github.com/modelcontextprotocol/servers"
       }
+    ]
+  },
+  
+  {
+    id: "github-mcp",
+    name: "GitHub MCP 服务器",
+    slug: "github-mcp-server", 
+    tagline: "AI 直接操作 GitHub 仓库和 Issues",
+    description: "强大的 MCP 服务器，让 AI 可以搜索代码、创建 Issues、管理 PR，完全集成 GitHub 工作流。",
+    logo: "📦",
+    category: modernCategories[0],
+    supportedModels: [
+      { id: "claude", name: "Claude", icon: "🧠", color: "blue" },
+      { id: "chatgpt", name: "ChatGPT", icon: "🤖", color: "green" }
+    ],
+    author: {
+      id: "github",
+      name: "GitHub",
+      avatar: "/api/placeholder/40/40", 
+      github: "github"
+    },
+    tags: ["MCP", "GitHub", "代码搜索", "Issue管理"],
+    toolType: "mcp-server" as const,
+    downloadCount: 8930,
+    starCount: 567,
+    rating: 4.7,
+    reviewCount: 89,
+    version: "v2.1.3",
+    featured: true,
+    verified: true,
+    status: "active" as const,
+    
+    mcpServer: {
+      protocol: "sse" as const,
+      transport: "server-sent-events",
+      capabilities: [
+        { type: "resources" as const, name: "代码搜索", description: "在仓库中搜索代码" },
+        { type: "tools" as const, name: "Issue管理", description: "创建和管理 Issues" },
+        { type: "tools" as const, name: "PR操作", description: "创建和审查 Pull Requests" }
+      ]
+    },
+    
+    functionCalls: [
+      {
+        name: "search_code",
+        description: "在 GitHub 仓库中搜索代码",
+        parameters: {
+          type: "object",
+          properties: {
+            query: { type: "string", description: "搜索查询" },
+            repo: { type: "string", description: "仓库名称 (owner/repo)" },
+            language: { type: "string", description: "编程语言过滤" }
+          },
+          required: ["query"]
+        }
+      },
+      {
+        name: "create_issue",
+        description: "创建新的 GitHub Issue", 
+        parameters: {
+          type: "object",
+          properties: {
+            repo: { type: "string", description: "仓库名称" },
+            title: { type: "string", description: "Issue 标题" },
+            body: { type: "string", description: "Issue 内容" },
+            labels: { type: "array", items: { type: "string" } }
+          },
+          required: ["repo", "title", "body"]
+        }
+      }
     ],
     
-    screenshots: [],
-    longDescription: "",
-    license: "MIT",
-    createdAt: "2024-01-15",
-    updatedAt: "2024-01-20"
+    integratesWithCursor: true,
+    integratesWithClaude: true,
+    
+    downloads: [
+      { 
+        type: "npm" as const,
+        url: "https://npmjs.com/package/github-mcp-server",
+        command: "npm install -g github-mcp-server"
+      }
+    ]
   },
+
   {
     id: "openai-functions-toolkit",
     name: "OpenAI Functions 工具包", 
@@ -182,6 +270,19 @@ const modernTools = [
           },
           required: ["query"]
         }
+      },
+      {
+        name: "send_email",
+        description: "发送电子邮件",
+        parameters: {
+          type: "object",
+          properties: {
+            to: { type: "string", description: "收件人邮箱" },
+            subject: { type: "string", description: "邮件主题" },
+            body: { type: "string", description: "邮件内容" }
+          },
+          required: ["to", "subject", "body"]
+        }
       }
     ],
     
@@ -199,81 +300,9 @@ const modernTools = [
         type: "github" as const,
         url: "https://github.com/openai-community/functions-toolkit"
       }
-    ],
-    
-    screenshots: [],
-    longDescription: "",
-    license: "Apache-2.0",
-    createdAt: "2024-02-01",
-    updatedAt: "2024-02-15"
+    ]
   },
-  {
-    id: "ai-agent-framework",
-    name: "多模态 AI 智能体框架",
-    slug: "multimodal-ai-agent-framework",
-    tagline: "构建能处理文本、图像、音频的智能体",
-    description: "完整的 AI 智能体开发框架，支持多模态输入、工具调用、长期记忆和任务规划。",
-    logo: "🤖",
-    category: modernCategories[2],
-    supportedModels: [
-      { id: "claude", name: "Claude", icon: "🧠", color: "blue" },
-      { id: "chatgpt", name: "ChatGPT", icon: "🤖", color: "green" },
-      { id: "gemini", name: "Gemini", icon: "💎", color: "purple" }
-    ],
-    author: {
-      id: "ai-framework-team",
-      name: "AI Framework Team",
-      avatar: "/api/placeholder/40/40",
-      github: "ai-framework-team"
-    },
-    tags: ["智能体", "多模态", "任务规划", "长期记忆"],
-    toolType: "agent" as const,
-    downloadCount: 8901,
-    starCount: 1234,
-    rating: 4.9,
-    reviewCount: 234,
-    version: "v2.0.0",
-    featured: true,
-    verified: true,
-    status: "active" as const,
-    
-    functionCalls: [
-      {
-        name: "process_image",
-        description: "处理和分析图像内容",
-        parameters: {
-          type: "object",
-          properties: {
-            image_url: { type: "string", description: "图像URL或base64编码" },
-            task: { type: "string", enum: ["describe", "ocr", "analyze"], description: "处理任务类型" }
-          },
-          required: ["image_url", "task"]
-        }
-      }
-    ],
-    
-    supportsStreaming: true,
-    contextLength: 128000,
-    
-    downloads: [
-      { 
-        type: "pip" as const,
-        url: "https://pypi.org/project/multimodal-ai-agent/",
-        command: "pip install multimodal-ai-agent"
-      },
-      { 
-        type: "docker" as const,
-        url: "https://hub.docker.com/r/ai-framework/multimodal-agent",
-        command: "docker pull ai-framework/multimodal-agent"
-      }
-    ],
-    
-    screenshots: [],
-    longDescription: "",
-    license: "MIT",
-    createdAt: "2024-03-01",
-    updatedAt: "2024-03-20"
-  },
+
   {
     id: "cursor-ai-extension",
     name: "Cursor AI 增强扩展",
@@ -316,13 +345,123 @@ const modernTools = [
         type: "github" as const,
         url: "https://github.com/cursor-community/ai-enhancement"
       }
+    ]
+  },
+
+  {
+    id: "claude-desktop-mcp",
+    name: "Claude Desktop MCP 集成",
+    slug: "claude-desktop-mcp-integration",
+    tagline: "在 Claude Desktop 中使用 MCP 服务器",
+    description: "简化 Claude Desktop 与 MCP 服务器的集成配置，提供可视化管理界面和一键安装功能。",
+    logo: "🖥️",
+    category: modernCategories[4],
+    supportedModels: [
+      { id: "claude", name: "Claude", icon: "🧠", color: "blue" }
+    ],
+    author: {
+      id: "anthropic-tools",
+      name: "Anthropic Tools",
+      avatar: "/api/placeholder/40/40",
+      github: "anthropic-tools"
+    },
+    tags: ["Claude Desktop", "MCP集成", "可视化配置", "管理工具"],
+    toolType: "plugin" as const,
+    downloadCount: 3456,
+    starCount: 289,
+    rating: 4.7,
+    reviewCount: 67,
+    version: "v0.9.1",
+    featured: false,
+    verified: true,
+    status: "beta" as const,
+    
+    integratesWithClaude: true,
+    
+    downloads: [
+      { 
+        type: "github" as const,
+        url: "https://github.com/anthropic-tools/claude-desktop-mcp"
+      },
+      { 
+        type: "direct" as const,
+        url: "https://releases.anthropic-tools.com/claude-desktop-mcp-v0.9.1.dmg"
+      }
+    ]
+  },
+
+  {
+    id: "ai-agent-framework",
+    name: "多模态 AI 智能体框架",
+    slug: "multimodal-ai-agent-framework",
+    tagline: "构建能处理文本、图像、音频的智能体",
+    description: "完整的 AI 智能体开发框架，支持多模态输入、工具调用、长期记忆和任务规划。",
+    logo: "🤖",
+    category: modernCategories[2],
+    supportedModels: [
+      { id: "claude", name: "Claude", icon: "🧠", color: "blue" },
+      { id: "chatgpt", name: "ChatGPT", icon: "🤖", color: "green" },
+      { id: "gemini", name: "Gemini", icon: "💎", color: "purple" }
+    ],
+    author: {
+      id: "ai-framework-team",
+      name: "AI Framework Team",
+      avatar: "/api/placeholder/40/40",
+      github: "ai-framework-team"
+    },
+    tags: ["智能体", "多模态", "任务规划", "长期记忆"],
+    toolType: "agent" as const,
+    downloadCount: 8901,
+    starCount: 1234,
+    rating: 4.9,
+    reviewCount: 234,
+    version: "v2.0.0",
+    featured: true,
+    verified: true,
+    status: "active" as const,
+    
+    functionCalls: [
+      {
+        name: "process_image",
+        description: "处理和分析图像内容",
+        parameters: {
+          type: "object",
+          properties: {
+            image_url: { type: "string", description: "图像URL或base64编码" },
+            task: { type: "string", enum: ["describe", "ocr", "analyze"], description: "处理任务类型" }
+          },
+          required: ["image_url", "task"]
+        }
+      },
+      {
+        name: "execute_task",
+        description: "执行复杂的多步骤任务",
+        parameters: {
+          type: "object",
+          properties: {
+            task_description: { type: "string", description: "任务描述" },
+            steps: { type: "array", items: { type: "string" }, description: "任务步骤" }
+          },
+          required: ["task_description"]
+        }
+      }
     ],
     
-    screenshots: [],
-    longDescription: "",
-    license: "GPL-3.0",
-    createdAt: "2024-01-10",
-    updatedAt: "2024-01-25"
+    supportsStreaming: true,
+    contextLength: 128000,
+    
+    downloads: [
+      { 
+        type: "pip" as const,
+        url: "https://pypi.org/project/multimodal-ai-agent/",
+        command: "pip install multimodal-ai-agent"
+      },
+      { 
+        type: "docker" as const,
+        url: "https://hub.docker.com/r/ai-framework/multimodal-agent",
+        command: "docker pull ai-framework/multimodal-agent"
+      }
+    ]
   }
 ];
 
@@ -352,10 +491,7 @@ const getStatusBadge = (status: string) => {
   }
 };
 
-export default function ArsenalPage() {
-  const featuredTools = modernTools.filter(tool => tool.featured);
-  const recentTools = modernTools.filter(tool => !tool.featured);
-
+export default function EnhancedArsenalPage() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* 页面标题 */}
@@ -435,12 +571,18 @@ export default function ArsenalPage() {
         </div>
       </div>
 
-      {/* 精选工具 */}
-      {featuredTools.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">⭐ 精选工具</h2>
+      {/* 主要内容标签页 */}
+      <Tabs defaultValue="featured" className="mb-8">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="featured">🌟 精选工具</TabsTrigger>
+          <TabsTrigger value="mcp">🔌 MCP 服务器</TabsTrigger>
+          <TabsTrigger value="functions">🛠️ Function 工具</TabsTrigger>
+          <TabsTrigger value="agents">🤖 AI 智能体</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="featured" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredTools.map(tool => (
+            {modernTools.filter(tool => tool.featured).map(tool => (
               <Card key={tool.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -448,21 +590,18 @@ export default function ArsenalPage() {
                       <div className="text-3xl">{tool.logo}</div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <Link href={`/arsenal/${tool.slug}`}>
-                            <h3 className="font-semibold hover:text-primary cursor-pointer">
-                              {tool.name}
-                            </h3>
-                          </Link>
+                          <h3 className="font-semibold">{tool.name}</h3>
                           {tool.verified && (
                             <Verified className="h-4 w-4 text-blue-500" />
                           )}
                         </div>
                         <div className="text-sm text-gray-500 flex items-center gap-2">
                           {getToolTypeIcon(tool.toolType)}
-                          <span>{tool.version}</span>
+                          <span>{tool.toolType.replace('-', ' ')}</span>
                         </div>
                       </div>
                     </div>
+                    {getStatusBadge(tool.status)}
                   </div>
                   
                   <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
@@ -478,28 +617,28 @@ export default function ArsenalPage() {
                     ))}
                   </div>
                   
-                  {/* 特殊能力标签 */}
+                  {/* 特性标签 */}
                   <div className="flex flex-wrap gap-1 mb-4">
                     {tool.mcpServer && (
-                      <Badge className="bg-blue-500 text-xs">
+                      <Badge variant="outline" className="text-xs border-blue-500 text-blue-600">
                         <Plug className="h-3 w-3 mr-1" />
                         MCP
                       </Badge>
                     )}
                     {tool.functionCalls && (
-                      <Badge className="bg-green-500 text-xs">
+                      <Badge variant="outline" className="text-xs border-green-500 text-green-600">
                         <Settings className="h-3 w-3 mr-1" />
                         Functions
                       </Badge>
                     )}
                     {tool.supportsStreaming && (
-                      <Badge className="bg-purple-500 text-xs">
+                      <Badge variant="outline" className="text-xs border-purple-500 text-purple-600">
                         <PlayCircle className="h-3 w-3 mr-1" />
-                        流式
+                        Streaming
                       </Badge>
                     )}
                     {tool.integratesWithCursor && (
-                      <Badge className="bg-orange-500 text-xs">
+                      <Badge variant="outline" className="text-xs border-orange-500 text-orange-600">
                         ↗️ Cursor
                       </Badge>
                     )}
@@ -521,9 +660,10 @@ export default function ArsenalPage() {
                   
                   {/* 操作按钮 */}
                   <div className="flex gap-2">
-                    <Button size="sm" className="flex-1">
-                      <Download className="h-4 w-4 mr-2" />
-                      下载
+                    <Button size="sm" className="flex-1" asChild>
+                      <Link href={`/arsenal/${tool.slug}`}>
+                        查看详情
+                      </Link>
                     </Button>
                     <Button size="sm" variant="outline">
                       <ExternalLink className="h-4 w-4" />
@@ -533,40 +673,47 @@ export default function ArsenalPage() {
               </Card>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* 主要内容标签页 */}
-      <Tabs defaultValue="featured" className="mb-8">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="featured">🌟 精选工具</TabsTrigger>
-          <TabsTrigger value="mcp">🔌 MCP 服务器</TabsTrigger>
-          <TabsTrigger value="functions">🛠️ Function 工具</TabsTrigger>
-          <TabsTrigger value="agents">🤖 AI 智能体</TabsTrigger>
-        </TabsList>
+        </TabsContent>
 
         <TabsContent value="mcp" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold mb-2">🔌 Model Context Protocol 服务器</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              MCP 是连接 AI 模型与外部数据源和工具的标准协议，让 AI 获得更丰富的上下文能力。
+            </p>
+          </div>
+          
+          <div className="space-y-4">
             {modernTools.filter(tool => tool.toolType === 'mcp-server').map(tool => (
               <Card key={tool.id} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   <div className="text-4xl">{tool.logo}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold">{tool.name}</h3>
-                      {tool.verified && <Verified className="h-4 w-4 text-blue-500" />}
+                      <h3 className="text-xl font-semibold">{tool.name}</h3>
+                      {tool.verified && (
+                        <Verified className="h-4 w-4 text-blue-500" />
+                      )}
+                      <Badge variant="outline" className="text-xs border-blue-500 text-blue-600">
+                        <Plug className="h-3 w-3 mr-1" />
+                        MCP Server
+                      </Badge>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                    
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
                       {tool.description}
                     </p>
                     
                     {/* MCP 能力展示 */}
                     {tool.mcpServer && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-medium mb-2">🔌 MCP 能力</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {tool.mcpServer.capabilities.map(cap => (
-                            <Badge key={cap.name} variant="outline" className="text-xs">
+                        <div className="text-sm font-medium mb-2">协议能力：</div>
+                        <div className="flex flex-wrap gap-2">
+                          {tool.mcpServer.capabilities.map((cap, index) => (
+                            <Badge key={index} variant="secondary" className="text-xs">
+                              {cap.type === 'resources' && <Database className="h-3 w-3 mr-1" />}
+                              {cap.type === 'tools' && <Settings className="h-3 w-3 mr-1" />}
+                              {cap.type === 'prompts' && <MessageSquare className="h-3 w-3 mr-1" />}
                               {cap.name}
                             </Badge>
                           ))}
@@ -575,34 +722,44 @@ export default function ArsenalPage() {
                     )}
                     
                     {/* Function 展示 */}
-                    {tool.functionCalls && (
+                    {tool.functionCalls && tool.functionCalls.length > 0 && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-medium mb-2">⚡ 可用函数</h4>
-                        <div className="space-y-1">
-                          {tool.functionCalls.slice(0, 2).map(func => (
-                            <div key={func.name} className="text-xs text-gray-500 font-mono">
-                              {func.name}()
-                            </div>
+                        <div className="text-sm font-medium mb-2">可用函数：</div>
+                        <div className="flex flex-wrap gap-2">
+                          {tool.functionCalls.slice(0, 3).map((func, index) => (
+                            <Badge key={index} variant="outline" className="text-xs">
+                              <Code className="h-3 w-3 mr-1" />
+                              {func.name}
+                            </Badge>
                           ))}
+                          {tool.functionCalls.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{tool.functionCalls.length - 3} 更多
+                            </Badge>
+                          )}
                         </div>
                       </div>
                     )}
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <Download className="h-3 w-3" />
-                          {tool.downloadCount.toLocaleString()}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="h-3 w-3" />
-                          {tool.rating}
-                        </span>
+                        <span>by {tool.author.name}</span>
+                        <span>{tool.version}</span>
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4" />
+                          <span>{tool.rating}</span>
+                        </div>
                       </div>
-                      <Button size="sm">
-                        <Download className="h-3 w-3 mr-1" />
-                        安装
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button size="sm" asChild>
+                          <Link href={`/arsenal/${tool.slug}`}>
+                            查看详情
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline">
+                          <Github className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -612,31 +769,44 @@ export default function ArsenalPage() {
         </TabsContent>
 
         <TabsContent value="functions" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold mb-2">🛠️ Function Calling 工具包</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              为 AI 模型提供可调用的函数工具，扩展 AI 的能力边界。
+            </p>
+          </div>
+          
+          <div className="space-y-4">
             {modernTools.filter(tool => tool.toolType === 'function-toolkit').map(tool => (
               <Card key={tool.id} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   <div className="text-4xl">{tool.logo}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold">{tool.name}</h3>
-                      {tool.verified && <Verified className="h-4 w-4 text-blue-500" />}
+                      <h3 className="text-xl font-semibold">{tool.name}</h3>
+                      <Badge variant="outline" className="text-xs border-green-500 text-green-600">
+                        <Settings className="h-3 w-3 mr-1" />
+                        Functions
+                      </Badge>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                    
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
                       {tool.description}
                     </p>
                     
-                    {/* Function 调用示例 */}
+                    {/* 函数列表 */}
                     {tool.functionCalls && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-medium mb-2">🛠️ 函数示例</h4>
+                        <div className="text-sm font-medium mb-2">
+                          包含 {tool.functionCalls.length} 个函数：
+                        </div>
                         <div className="space-y-2">
-                          {tool.functionCalls.slice(0, 2).map(func => (
-                            <div key={func.name} className="bg-gray-50 dark:bg-gray-800 p-2 rounded text-xs">
-                              <div className="font-mono text-blue-600 dark:text-blue-400">
-                                {func.name}
+                          {tool.functionCalls.slice(0, 2).map((func, index) => (
+                            <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded p-3">
+                              <div className="font-mono text-sm font-semibold mb-1">
+                                {func.name}()
                               </div>
-                              <div className="text-gray-600 dark:text-gray-400 mt-1">
+                              <div className="text-sm text-gray-600 dark:text-gray-400">
                                 {func.description}
                               </div>
                             </div>
@@ -647,18 +817,16 @@ export default function ArsenalPage() {
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <Download className="h-3 w-3" />
-                          {tool.downloadCount.toLocaleString()}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="h-3 w-3" />
-                          {tool.rating}
-                        </span>
+                        <span>by {tool.author.name}</span>
+                        <div className="flex items-center gap-1">
+                          <Download className="h-4 w-4" />
+                          <span>{tool.downloadCount.toLocaleString()}</span>
+                        </div>
                       </div>
-                      <Button size="sm">
-                        <Download className="h-3 w-3 mr-1" />
-                        安装
+                      <Button size="sm" asChild>
+                        <Link href={`/arsenal/${tool.slug}`}>
+                          查看详情
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -669,60 +837,93 @@ export default function ArsenalPage() {
         </TabsContent>
 
         <TabsContent value="agents" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold mb-2">🤖 AI 智能体框架</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              构建能够自主思考、规划和执行复杂任务的 AI 智能体。
+            </p>
+          </div>
+          
+          <div className="space-y-6">
             {modernTools.filter(tool => tool.toolType === 'agent').map(tool => (
               <Card key={tool.id} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   <div className="text-4xl">{tool.logo}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold">{tool.name}</h3>
-                      {tool.verified && <Verified className="h-4 w-4 text-blue-500" />}
+                      <h3 className="text-xl font-semibold">{tool.name}</h3>
+                      <Badge variant="outline" className="text-xs border-purple-500 text-purple-600">
+                        <Bot className="h-3 w-3 mr-1" />
+                        AI Agent
+                      </Badge>
+                      {tool.contextLength && (
+                        <Badge variant="secondary" className="text-xs">
+                          {tool.contextLength.toLocaleString()} tokens
+                        </Badge>
+                      )}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                    
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
                       {tool.description}
                     </p>
                     
-                    {/* 智能体特性 */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium mb-2">🤖 智能体能力</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {tool.supportsStreaming && (
-                          <Badge className="bg-purple-500 text-xs">
-                            <PlayCircle className="h-3 w-3 mr-1" />
-                            流式响应
-                          </Badge>
-                        )}
-                        {tool.contextLength && (
-                          <Badge className="bg-blue-500 text-xs">
+                    {/* 智能体能力 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <div className="text-sm font-medium mb-2">支持的 AI 模型：</div>
+                        <div className="flex flex-wrap gap-1">
+                          {tool.supportedModels.map(model => (
+                            <Badge key={model.id} variant="secondary" className="text-xs">
+                              {model.icon} {model.name}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium mb-2">核心功能：</div>
+                        <div className="flex flex-wrap gap-1">
+                          {tool.supportsStreaming && (
+                            <Badge variant="outline" className="text-xs">
+                              <PlayCircle className="h-3 w-3 mr-1" />
+                              流式输出
+                            </Badge>
+                          )}
+                          {tool.functionCalls && (
+                            <Badge variant="outline" className="text-xs">
+                              <Settings className="h-3 w-3 mr-1" />
+                              工具调用
+                            </Badge>
+                          )}
+                          <Badge variant="outline" className="text-xs">
                             <Database className="h-3 w-3 mr-1" />
-                            {tool.contextLength.toLocaleString()} tokens
+                            记忆管理
                           </Badge>
-                        )}
-                        {tool.functionCalls && (
-                          <Badge className="bg-green-500 text-xs">
-                            <Settings className="h-3 w-3 mr-1" />
-                            工具调用
-                          </Badge>
-                        )}
+                        </div>
                       </div>
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <Download className="h-3 w-3" />
-                          {tool.downloadCount.toLocaleString()}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="h-3 w-3" />
-                          {tool.rating}
-                        </span>
+                        <span>by {tool.author.name}</span>
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4" />
+                          <span>{tool.rating}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Users className="h-4 w-4" />
+                          <span>{tool.reviewCount} 评价</span>
+                        </div>
                       </div>
-                      <Button size="sm">
-                        <Download className="h-3 w-3 mr-1" />
-                        部署
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button size="sm" asChild>
+                          <Link href={`/arsenal/${tool.slug}`}>
+                            查看详情
+                          </Link>
+                        </Button>
+                        <Button size="sm" variant="outline">
+                          <GitBranch className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -730,107 +931,29 @@ export default function ArsenalPage() {
             ))}
           </div>
         </TabsContent>
-        
-        <TabsContent value="featured">
-          {/* 这里保持原有的精选工具内容 */}
-        </TabsContent>
       </Tabs>
 
-      {/* 所有工具 */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">🛠️ 所有工具</h2>
-        <div className="space-y-4">
-          {recentTools.map(tool => (
-            <Card key={tool.id} className="p-6 hover:shadow-lg transition-shadow">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="text-4xl">{tool.logo}</div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <Link href={`/arsenal/${tool.slug}`}>
-                        <h3 className="text-xl font-semibold hover:text-primary cursor-pointer">
-                          {tool.name}
-                        </h3>
-                      </Link>
-                      {tool.verified && (
-                        <Verified className="h-4 w-4 text-blue-500" />
-                      )}
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-2">
-                      {tool.tagline}
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span>by {tool.author.name}</span>
-                      <span>{tool.version}</span>
-                      <Badge variant="outline" className="text-xs">
-                        {tool.category.icon} {tool.category.name}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="flex-1">
-                  {/* AI 模型支持 */}
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {tool.supportedModels.map(model => (
-                      <Badge key={model.id} variant="secondary" className="text-xs">
-                        {model.icon} {model.name}
-                      </Badge>
-                    ))}
-                  </div>
-                  
-                  {/* 标签 */}
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {tool.tags.map(tag => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="flex flex-col items-end gap-2">
-                  {/* 统计信息 */}
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <Download className="h-4 w-4" />
-                      <span>{tool.downloadCount.toLocaleString()}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4" />
-                      <span>{tool.rating}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4" />
-                      <span>{tool.reviewCount}</span>
-                    </div>
-                  </div>
-                  
-                  {/* 操作按钮 */}
-                  <div className="flex gap-2">
-                    <Button size="sm">
-                      <Download className="h-4 w-4 mr-2" />
-                      下载
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
+      {/* 提交工具邀请 */}
+      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">分享你的 AI 工具</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+          开发了 MCP 服务器、Function 工具包或 AI 智能体？欢迎提交到军火库与社区分享！
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button size="lg" className="gap-2">
+            <Plug className="h-5 w-5" />
+            提交 MCP 服务器
+          </Button>
+          <Button size="lg" variant="outline" className="gap-2">
+            <Settings className="h-5 w-5" />
+            提交 Function 工具
+          </Button>
+          <Button size="lg" variant="outline" className="gap-2">
+            <Bot className="h-5 w-5" />
+            提交 AI 智能体
+          </Button>
         </div>
-      </div>
-
-      {/* 分页 */}
-      <div className="flex justify-center items-center gap-2">
-        <Button variant="outline" disabled>上一页</Button>
-        <Badge variant="secondary">1</Badge>
-        <Badge variant="outline">2</Badge>
-        <Badge variant="outline">3</Badge>
-        <Button variant="outline">下一页</Button>
-      </div>
+      </Card>
     </div>
   );
 }
