@@ -79,16 +79,6 @@ header-includes: |
 # 详细发展报告
 
 ${content}
-
----
-
-**联系我们**
-
-- 邮箱：contact@vc101.com
-- 网站：[vc101.com](https://vc101.com)
-- 微信群：扫描官网二维码加入
-
-© 2025 VC101 Community. All rights reserved.
 `;
 
     const markdownFile = join(tempDir, 'document.md');
