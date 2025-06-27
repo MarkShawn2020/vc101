@@ -15,8 +15,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Neurora | Index",
-  description: "Neurora - Where Code Meets Magic",
+  title: "VC101 - Vibe Coding 101",
+  description: "Code with the Vibe, Build with the Future - 全球领先的 Human-AI 协同编程社区",
 };
 
 const geistSans = Geist({
@@ -50,10 +50,28 @@ export default function RootLayout({
                       href={"/"} 
                       className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
-                      <Logo mode="svg" className="h-8 w-auto" color="currentColor" />
-                      <span>Neurora</span>
+                      {/*<Logo mode="png" className="h-8 w-auto" color="currentColor" />*/}
+                      <span>VC101</span>
                     </Link>
-                    <DeployButton />
+                    
+                    {/* 主导航菜单 */}
+                    <nav className="hidden md:flex items-center gap-6 text-sm">
+                      <Link href="/insights" className="hover:text-primary transition-colors">
+                        💡 Vibe 洞见
+                      </Link>
+                      <Link href="/arsenal" className="hover:text-primary transition-colors">
+                        🔧 Vibe 军火库
+                      </Link>
+                      <Link href="/quests" className="hover:text-primary transition-colors">
+                        🏆 Vibe 任务
+                      </Link>
+                      <Link href="/ecosystem" className="hover:text-primary transition-colors">
+                        🌐 生态伙伴
+                      </Link>
+                      <Link href="/resources" className="hover:text-primary transition-colors">
+                        📚 资源中心
+                      </Link>
+                    </nav>
                   </div>
                   
                   <div className="mt-4 md:mt-0 flex justify-center items-center">
@@ -80,7 +98,7 @@ export default function RootLayout({
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    Neurora
+                    VC101 Community
                   </a>
                 </p>
                 <ThemeSwitcher />

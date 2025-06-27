@@ -1,7 +1,7 @@
 # Neurora企业级模板
 
 <div align="center">
-  <img src="./public/cs-magic_logo_1280.svg" alt="Neurora Logo" width="120" height="120" />
+  <img src="./public/logo.png" alt="Neurora Logo" width="120" height="120" />
 </div>
 
 <h1 align="center">Next.js + Supabase Boilerplate</h1>

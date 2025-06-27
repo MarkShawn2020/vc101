@@ -30,7 +30,7 @@ export default function Logo({ mode = 'svg', className = '', color, size = 32 }:
   // Image mode - theme-based image
   return (
     <Image
-      src={theme === 'dark' ? '/cs-magic_logo_dark.png' : '/cs-magic_logo_light.png'}
+      src={theme === 'dark' ? '/logo.png' : '/logo.png'}
       alt="Neurora Logo"
       width={size}
       height={size}
