@@ -56,13 +56,15 @@ export default async function HeaderAuth() {
       </form>
     </div>
   ) : (
-    <div className="flex items-center gap-2">
-      <Button asChild size="sm" variant="outline">
-        <Link href="/sign-in">Login</Link>
-      </Button>
-      <Button asChild size="sm">
-        <Link href="/sign-up">Sign Up</Link>
-      </Button>
-    </div>
+      null
+    //   todo: support better auth system
+    // <div className="flex items-center gap-2">
+    //   <Button asChild size="sm" variant="outline">
+    //     <Link href="/sign-in">Login</Link>
+    //   </Button>
+    //   <Button asChild size="sm">
+    //     <Link href="/sign-up">Sign Up</Link>
+    //   </Button>
+    // </div>
   );
 }
