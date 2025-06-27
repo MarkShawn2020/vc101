@@ -7,48 +7,51 @@
 <h1 align="center">VC101 - Vibe Coding 101</h1>
 
 <p align="center">
-  基于 Next.js 14 App Router 构建的编程学习平台
+  <strong>"Code with the Vibe, Build with the Future."</strong>
 </p>
 
 <p align="center">
-  <a href="#特性"><strong>特性</strong></a> ·
-  <a href="#最佳实践"><strong>最佳实践</strong></a> ·
-  <a href="#本地开发"><strong>本地开发</strong></a> ·
-  <a href="#项目结构"><strong>项目结构</strong></a>
+  与 AI 共鸣，创未来代码 | 全球领先的 Human-AI 协同编程社区
 </p>
 
-## 特性
+<p align="center">
+  <a href="#关于我们"><strong>关于我们</strong></a> ·
+  <a href="#核心功能"><strong>核心功能</strong></a> ·
+  <a href="#本地开发"><strong>本地开发</strong></a> ·
+  <a href="#加入社区"><strong>加入社区</strong></a>
+</p>
 
-- 🚀 [Next.js 14](https://nextjs.org) App Router
-  - Server Components
-  - Client Components
-  - 响应式设计
-- 📚 知识内容管理
-  - Markdown 文章渲染
-  - 目录导航
-  - 代码高亮
-  - 任务列表支持
-- 🎯 专业功能
-  - 编程技术生态系统
-  - 开发工具集合
-  - 技术洞察分享
-  - 学习任务追踪
-- 🎨 现代化 UI/UX
-  - [Tailwind CSS](https://tailwindcss.com)
-  - [Shadcn/UI](https://ui.shadcn.com/)
-  - 响应式设计
-  - 暗色模式
-- 🛠️ 开发体验
-  - TypeScript
-  - ESLint
-  - Prettier
+## 关于我们
 
-## 主要模块
+VC101 是一个专注于 Human-AI 协同编程的社区平台。我们不只关注代码，更关注开发者与 AI 助手（Claude、Gemini、Copilot 等）之间的"Vibe"（感觉、默契、协同流程）。
 
-- **洞察 (Insights)** - 编程技术深度分析文章
-- **生态系统 (Ecosystem)** - 技术栈和项目展示
-- **工具集 (Arsenal)** - 实用开发工具和资源
-- **任务 (Quests)** - 学习路径和任务追踪
+### 核心目标
+
+- 🔗 **连接 (Connect)** - 连接对 AI 编程充满热情的开发者，形成活跃互助的社群
+- 🚀 **创造 (Create)** - 激励并展示社区成员利用 AI 开发的创新工具、项目和解决方案  
+- 📚 **分享 (Share)** - 成为 AI 编程领域前沿知识、最佳实践和实用资源的首选集散地
+- 💪 **赋能 (Empower)** - 通过黑客松、资源对接等活动，为开发者提供成长和展示的平台
+
+### 目标用户
+
+- **AI 早期采纳者** - 喜欢尝试最新 AI 模型的开发者，热衷探索 Prompt Engineering
+- **工具开发者/独立黑客** - 为 AI 工具链开发增强插件、效率工具，并乐于分享
+- **学生与初学者** - 希望快速学习如何利用 AI 提升编程学习效率的年轻开发者
+- **企业开发者/技术主管** - 探索如何将 AI 编程范式引入团队，提高整体研发效能
+
+## 核心功能
+
+### 🧠 Vibe 洞见 (Insights)
+AI 编程领域的深度分析文章，支持 Markdown 格式和代码高亮，涵盖 Prompt 技巧、工具评测、项目实战等内容。
+
+### 🔧 开发者军火库 (Arsenal)  
+精心策划的 AI 编程工具和资源集合，提供详细介绍、下载方式、评分系统，支持按 AI 模型和工具类别筛选。
+
+### 🏆 Vibe 任务 (Quests)
+定期举办的黑客松活动，展示优秀项目和获胜团队，形成开发者"荣誉殿堂"。
+
+### 🌐 生态伙伴 (Ecosystem)
+展示与 AI 编程相关的公司、产品和 API，帮助开发者快速了解和选型。
 
 ## 本地开发
 
@@ -68,24 +71,29 @@ pnpm install
 pnpm dev
 ```
 
-## 项目结构
+访问 http://localhost:3000 查看网站。
 
-```
-.
-├── app/                # Next.js App Router
-│   ├── insights/       # 洞察文章页面
-│   ├── ecosystem/      # 生态系统页面
-│   ├── arsenal/        # 工具集页面
-│   └── quests/         # 任务页面
-├── components/         # React 组件
-├── lib/               # 工具函数
-├── public/            # 静态资源
-└── styles/            # 样式文件
-```
+## 加入社区
+
+- 🔗 **GitHub**: [github.com/the-vc101](https://github.com/the-vc101)
+- 💬 **微信社群**: 扫码加入我们的微信群
+- 📧 **邮箱**: contact@vc101.com
+
+## 技术栈
+
+- **前端**: Next.js (latest) + React
+- **样式**: Tailwind CSS + Shadcn/UI  
+- **内容**: Markdown 渲染 + 语法高亮
+- **部署**: Vercel
 
 ## 贡献
 
-欢迎提交 Issue 和 Pull Request！
+欢迎提交 Issue 和 Pull Request！我们特别欢迎：
+
+- 优质的 AI 编程文章投稿
+- 实用的开发工具推荐
+- 社区功能建议和改进
+- Bug 修复和性能优化
 
 ## 许可
 
