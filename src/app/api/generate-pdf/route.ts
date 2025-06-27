@@ -51,8 +51,20 @@ footer-right: "${lastUpdated}"
 listings: true
 code-block-font-size: "\\\\small"
 mainfont: "Times New Roman"
-CJKmainfont: "Source Han Serif SC"
-monofont: "Source Code Pro"
+monofont: "Courier New"
+header-includes: |
+  \\usepackage{fontspec}
+  \\usepackage{graphicx}
+  \\usepackage{xeCJK}
+  \\usepackage{xelatexemoji}
+  \\renewcommand{\\xelatexemojipath}[1]{${process.cwd()}/images/#1.PNG}
+  \\usepackage{newunicodechar}
+  \\newunicodechar{🥇}{\\xelatexemoji{1f947}}
+  \\newunicodechar{🥈}{\\xelatexemoji{1f948}}
+  \\newunicodechar{🥉}{\\xelatexemoji{1f949}}
+  \\newunicodechar{🤝}{\\xelatexemoji{1f91d}}
+  \\newunicodechar{🧠}{\\xelatexemoji{1f9e0}}
+  \\setCJKmainfont[AutoFakeBold,AutoFakeSlant]{Noto Sans CJK SC}
 ...
 
 # 社区统计概览
@@ -90,6 +102,9 @@ ${content}
     
     // 设置字体路径环境变量
     process.env.OSFONTDIR = fontPath;
+    
+    // 设置LaTeX包搜索路径
+    process.env.TEXINPUTS = `${process.cwd()}/texmf/tex/latex//:`;
 
     // 使用pandoc生成PDF - 设置更长的超时时间
     const pandocCommand = `pandoc "${markdownFile}" -o "${pdfFile}" --from markdown --template "${templatePath}" --pdf-engine=xelatex --listings -V fontpath="${fontPath}"`;
