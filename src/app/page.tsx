@@ -41,24 +41,24 @@ const LandingPage = () => (
     <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
       <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="text-4xl mb-4">💡</div>
-        <h3 className="text-xl font-semibold mb-2">Vibe 洞见</h3>
+        <h3 className="text-xl font-semibold mb-2">VC 洞见</h3>
         <p className="text-gray-600 dark:text-gray-400">最新的 AI 编程技巧、最佳实践和行业洞察</p>
       </div>
       <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="text-4xl mb-4">🔧</div>
-        <h3 className="text-xl font-semibold mb-2">Vibe 军火库</h3>
+        <h3 className="text-xl font-semibold mb-2">VC 军火库</h3>
         <p className="text-gray-600 dark:text-gray-400">精选的 AI 编程工具、插件和脚本合集</p>
       </div>
       <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
         <div className="text-4xl mb-4">🏆</div>
-        <h3 className="text-xl font-semibold mb-2">Vibe 任务</h3>
+        <h3 className="text-xl font-semibold mb-2">VC 任务</h3>
         <p className="text-gray-600 dark:text-gray-400">定期的黑客松活动和技术挑战赛</p>
       </div>
     </div>
     
     {/* 社区合作伙伴 */}
     <div className="w-full max-w-4xl mx-auto text-center">
-      <h3 className="text-lg font-medium mb-6 text-gray-500 dark:text-gray-400">生态伙伴</h3>
+      <h3 className="text-lg font-medium mb-6 text-gray-500 dark:text-gray-400">VC 伙伴</h3>
       <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
         <div className="text-sm font-medium">百度</div>
         <div className="text-sm font-medium">火山引擎</div>
@@ -86,7 +86,7 @@ const Dashboard = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">💡</div>
-        <h3 className="font-semibold mb-2">Vibe 洞见</h3>
+        <h3 className="font-semibold mb-2">VC 洞见</h3>
         <p className="text-gray-600 text-sm">浏览最新的 AI 编程文章</p>
       </div>
       <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
@@ -101,7 +101,7 @@ const Dashboard = () => (
       </div>
       <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">🌐</div>
-        <h3 className="font-semibold mb-2">生态伙伴</h3>
+        <h3 className="font-semibold mb-2">VC 伙伴</h3>
         <p className="text-gray-600 text-sm">探索 AI 公司产品</p>
       </div>
     </div>

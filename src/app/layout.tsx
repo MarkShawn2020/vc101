@@ -47,7 +47,7 @@ export default function RootLayout({
                 <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-stretch md:items-center py-4 px-5 md:py-3">
                   <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
                     <Link 
-                      href={"/public"}
+                      href={"/"}
                       className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
                       {/*<Logo mode="png" className="h-8 w-auto" color="currentColor" />*/}
@@ -57,19 +57,19 @@ export default function RootLayout({
                     {/* 主导航菜单 */}
                     <nav className="hidden md:flex items-center gap-6 text-sm">
                       <Link href="/insights" className="hover:text-primary transition-colors">
-                        💡 Vibe 洞见
+                        💡 VC 洞见
                       </Link>
                       <Link href="/arsenal" className="hover:text-primary transition-colors">
-                        🔧 Vibe 军火库
+                        🔧 VC 军火库
                       </Link>
                       <Link href="/quests" className="hover:text-primary transition-colors">
-                        🏆 Vibe 任务
+                        🏆 VC 任务
                       </Link>
                       <Link href="/ecosystem" className="hover:text-primary transition-colors">
-                        🌐 生态伙伴
+                        🌐 VC 伙伴
                       </Link>
                       <Link href="/resources" className="hover:text-primary transition-colors">
-                        📚 资源中心
+                        📚 VC 资源中心
                       </Link>
                     </nav>
                   </div>

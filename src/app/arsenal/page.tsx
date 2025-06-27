@@ -360,7 +360,7 @@ export default function ArsenalPage() {
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">🔧 Vibe 军火库</h1>
+        <h1 className="text-4xl font-bold mb-4">🔧 VC 军火库</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           精选的 AI 编程工具，MCP 服务器，Function 工具包和智能体框架
         </p>

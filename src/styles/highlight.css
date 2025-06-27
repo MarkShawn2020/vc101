@@ -1,0 +1,177 @@
+/* Custom highlight.js theme for VC101 */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-family: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dark .hljs {
+  background: #1a1b26;
+  color: #a9b1d6;
+}
+
+/* Keywords */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #bb9af7;
+  font-weight: bold;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-subst {
+  color: #bb9af7;
+}
+
+/* Strings */
+.hljs-string,
+.hljs-attr,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #9ece6a;
+}
+
+.dark .hljs-string,
+.dark .hljs-attr,
+.dark .hljs-symbol,
+.dark .hljs-bullet,
+.dark .hljs-addition {
+  color: #9ece6a;
+}
+
+/* Comments */
+.hljs-comment,
+.hljs-quote {
+  color: #6c7086;
+  font-style: italic;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote {
+  color: #565f89;
+}
+
+/* Numbers */
+.hljs-number,
+.hljs-literal {
+  color: #ff9e64;
+}
+
+.dark .hljs-number,
+.dark .hljs-literal {
+  color: #ff9e64;
+}
+
+/* Functions */
+.hljs-function,
+.hljs-title,
+.hljs-class .hljs-title {
+  color: #7aa2f7;
+}
+
+.dark .hljs-function,
+.dark .hljs-title,
+.dark .hljs-class .hljs-title {
+  color: #7aa2f7;
+}
+
+/* Variables */
+.hljs-variable,
+.hljs-template-variable {
+  color: #f7768e;
+}
+
+.dark .hljs-variable,
+.dark .hljs-template-variable {
+  color: #f7768e;
+}
+
+/* Types */
+.hljs-type,
+.hljs-built_in {
+  color: #e0af68;
+}
+
+.dark .hljs-type,
+.dark .hljs-built_in {
+  color: #e0af68;
+}
+
+/* Meta */
+.hljs-meta {
+  color: #7c3aed;
+}
+
+.dark .hljs-meta {
+  color: #bb9af7;
+}
+
+/* Deletion */
+.hljs-deletion {
+  color: #f7768e;
+  background-color: #3d2838;
+}
+
+.dark .hljs-deletion {
+  color: #f7768e;
+  background-color: #3d2838;
+}
+
+/* Line numbers (if used) */
+.hljs-ln-numbers {
+  text-align: right;
+  color: #6c7086;
+  border-right: 1px solid #e5e7eb;
+  padding-right: 8px;
+  margin-right: 8px;
+  user-select: none;
+}
+
+.dark .hljs-ln-numbers {
+  color: #565f89;
+  border-right-color: #374151;
+}
+
+/* Copy button styles */
+.code-block-container {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dark .copy-button {
+  background: rgba(26, 27, 38, 0.8);
+  border-color: #374151;
+  color: #a9b1d6;
+}
+
+.code-block-container:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.dark .copy-button:hover {
+  background: rgba(26, 27, 38, 1);
+}

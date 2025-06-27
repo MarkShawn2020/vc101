@@ -265,7 +265,7 @@ export default function EcosystemPage() {
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">🌐 生态伙伴</h1>
+        <h1 className="text-4xl font-bold mb-4">🌐 VC 伙伴</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           探索 AI 编程生态系统，发现推动技术创新的公司和产品
         </p>

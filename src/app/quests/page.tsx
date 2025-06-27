@@ -190,7 +190,7 @@ export default function QuestsPage() {
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">🏆 Vibe 任务</h1>
+        <h1 className="text-4xl font-bold mb-4">🏆 VC 任务</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           参与技术挑战，展示你的 AI 编程技能，与社区精英一起创造未来
         </p>

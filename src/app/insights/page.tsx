@@ -88,7 +88,7 @@ export default function InsightsPage() {
     <div className="w-full max-w-6xl mx-auto px-4 py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">💡 Vibe 洞见</h1>
+        <h1 className="text-4xl font-bold mb-4">💡 VC 洞见</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           探索 AI 编程的前沿趋势，分享最佳实践与深度思考
         </p>
