@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ProfessionalReport from '@/components/professional-report';
 import Link from 'next/link';
 import { ProgressData } from '@/lib/progress-utils';
 import { Calendar, TrendingUp, Users, Code, Trophy, Zap } from 'lucide-react';
@@ -259,11 +260,11 @@ export default function ProgressClient({ progressData }: ProgressClientProps) {
           </TabsContent>
 
           <TabsContent value="details">
-            <Card className="p-8">
-              <div className="prose dark:prose-invert max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: progressData.content }} />
-              </div>
-            </Card>
+            <ProfessionalReport 
+              content={progressData.content}
+              lastUpdated={progressData.lastUpdated}
+              stats={progressData.stats}
+            />
           </TabsContent>
 
           <TabsContent value="activity">
