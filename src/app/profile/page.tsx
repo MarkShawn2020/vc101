@@ -357,7 +357,6 @@ export default function ProfilePage() {
                       <Badge variant="secondary" className="text-xs">
                         {contribution.type === 'insight' && '📄 文章'}
                         {contribution.type === 'tool' && '🔧 工具'}
-                        {contribution.type === 'quest' && '🏆 任务'}
                       </Badge>
                       {contribution.featured && (
                         <Badge variant="outline" className="text-xs">
@@ -431,7 +430,6 @@ export default function ProfilePage() {
                       <Badge variant="secondary" className="text-xs">
                         {favorite.itemType === 'insight' && '📄'}
                         {favorite.itemType === 'tool' && '🔧'}
-                        {favorite.itemType === 'resource' && '📚'}
                         {favorite.itemType}
                       </Badge>
                     </div>
@@ -469,7 +467,6 @@ export default function ProfilePage() {
                   <Badge 
                     variant="outline" 
                     className={`text-xs ${
-                      badge.rarity === 'legendary' ? 'border-yellow-500 text-yellow-600' :
                       badge.rarity === 'epic' ? 'border-purple-500 text-purple-600' :
                       badge.rarity === 'rare' ? 'border-blue-500 text-blue-600' :
                       'border-gray-500 text-gray-600'

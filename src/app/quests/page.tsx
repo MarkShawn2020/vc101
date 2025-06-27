@@ -183,7 +183,7 @@ export default function QuestsPage() {
   const activeQuests = mockQuests.filter(quest => 
     ['registration-open', 'in-progress', 'judging'].includes(quest.status)
   );
-  const upcomingQuests = mockQuests.filter(quest => quest.status === 'upcoming');
+  const upcomingQuests = mockQuests.filter(quest => false); // No upcoming status in current data
   const completedQuests = mockQuests.filter(quest => quest.status === 'completed');
 
   return (

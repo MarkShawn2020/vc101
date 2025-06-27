@@ -485,7 +485,6 @@ export default function EcosystemPage() {
                       </Badge>
                     </div>
                     <Badge variant="outline" className={`text-xs ${
-                      product.pricing === 'free' ? 'border-green-500 text-green-600' :
                       product.pricing === 'freemium' ? 'border-blue-500 text-blue-600' :
                       'border-orange-500 text-orange-600'
                     }`}>

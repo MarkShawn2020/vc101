@@ -317,12 +317,13 @@ const relatedInsights = [
 ];
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function InsightDetailPage({ params }: Props) {
+export default async function InsightDetailPage({ params }: Props) {
+  const { slug } = await params;
   const insight = mockInsightDetail; // 实际应用中应该根据 slug 查询数据
 
   return (

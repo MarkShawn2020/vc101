@@ -218,12 +218,13 @@ const mockParticipants = [
 ];
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function QuestDetailPage({ params }: Props) {
+export default async function QuestDetailPage({ params }: Props) {
+  const { slug } = await params;
   const quest = mockQuestDetail; // 实际应用中应该根据 slug 查询数据
 
   const getStatusBadge = (status: string) => {

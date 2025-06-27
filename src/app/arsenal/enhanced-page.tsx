@@ -713,7 +713,6 @@ export default function EnhancedArsenalPage() {
                             <Badge key={index} variant="secondary" className="text-xs">
                               {cap.type === 'resources' && <Database className="h-3 w-3 mr-1" />}
                               {cap.type === 'tools' && <Settings className="h-3 w-3 mr-1" />}
-                              {cap.type === 'prompts' && <MessageSquare className="h-3 w-3 mr-1" />}
                               {cap.name}
                             </Badge>
                           ))}

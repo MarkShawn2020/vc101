@@ -153,7 +153,8 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
           },
           
           // Enhanced code blocks
-          code: ({ inline, className, children, ...props }) => {
+          code: ({ className, children, ...props }: any) => {
+            const inline = (props as any)?.inline;
             const match = /language-(\w+)/.exec(className || '');
             const language = match ? match[1] : '';
             

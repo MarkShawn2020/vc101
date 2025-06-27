@@ -1,3 +1,5 @@
+'use client';
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -200,12 +202,13 @@ const relatedTools = [
 ];
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function ToolDetailPage({ params }: Props) {
+export default async function ToolDetailPage({ params }: Props) {
+  const { slug } = await params;
   const tool = mockToolDetail; // 实际应用中应该根据 slug 查询数据
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
 
