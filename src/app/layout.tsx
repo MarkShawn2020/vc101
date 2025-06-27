@@ -47,7 +47,7 @@ export default function RootLayout({
                 <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-stretch md:items-center py-4 px-5 md:py-3">
                   <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
                     <Link 
-                      href={"/"} 
+                      href={"/public"}
                       className="flex items-center gap-2 text-lg md:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
                       {/*<Logo mode="png" className="h-8 w-auto" color="currentColor" />*/}
