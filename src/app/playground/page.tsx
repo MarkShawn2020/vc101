@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import MonacoCodeEditor from "@/components/monaco-code-editor";
 import ProblemDisplay from "@/components/problem-display";
 import EnhancedResultDisplay from "@/components/enhanced-result-display";
@@ -49,7 +51,7 @@ interface ExecutionResult {
   memory?: number;
 }
 
-export default function HackathonPage() {
+export default function PlaygroundPage() {
   const [result, setResult] = useState<ExecutionResult | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -95,10 +97,20 @@ export default function HackathonPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">VC黑客松 - 在线编程挑战</h1>
+          <h1 className="text-3xl font-bold mb-2">VC 编程练习场 - Playground</h1>
           <p className="text-muted-foreground">
-            Welcome to VC Hackathon! 展示你的编程技能，与AI协同编程！
+            专业级在线代码编辑器，支持多种编程语言，让你随时随地练习编程！
           </p>
+          <div className="mt-4 flex items-center gap-4">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/quests">
+                ← 返回黑客松主页
+              </Link>
+            </Button>
+            <div className="text-sm text-muted-foreground">
+              💡 完成题目后可以参加我们的黑客松挑战
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

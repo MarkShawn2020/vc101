@@ -190,10 +190,39 @@ export default function QuestsPage() {
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* 页面标题 */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">🏆 VC 任务</h1>
+        <h1 className="text-4xl font-bold mb-4">💻 VC 黑客松</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           参与技术挑战，展示你的 AI 编程技能，与社区精英一起创造未来
         </p>
+      </div>
+
+      {/* Playground 快速入口 */}
+      <div className="mb-12">
+        <Card className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-8 border-2 border-dashed border-green-300 dark:border-green-700">
+          <div className="text-center">
+            <div className="text-4xl mb-4">🚀</div>
+            <h2 className="text-2xl font-bold mb-4">编程练习场 (Playground)</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+              想要热身一下？进入我们的编程练习场，体验专业级的在线代码编辑器，
+              解决算法题目，为黑客松做好准备！
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="gap-2" asChild>
+                <Link href="/playground">
+                  <Code className="h-5 w-5" />
+                  进入 Playground
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2">
+                <Play className="h-5 w-5" />
+                观看演示
+              </Button>
+            </div>
+            <div className="mt-4 text-sm text-gray-500">
+              ✨ 支持 Python、Java、C++、JavaScript 等多种语言
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* 快速统计 */}
