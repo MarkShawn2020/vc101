@@ -6,6 +6,7 @@ import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
 import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import Image from "next/image";
+import Link from "next/link";
 
 // VC101 Landing Page Component
 const LandingPage = () => (
@@ -31,29 +32,26 @@ const LandingPage = () => (
         <Button size="lg" className="px-8 py-3 text-lg">
           💬 加入社群
         </Button>
-        <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
-          🚀 探索工具
-        </Button>
       </div>
     </div>
     
     {/* 精选内容区域 */}
     <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+      <Link href="/insights" className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-4xl mb-4">💡</div>
         <h3 className="text-xl font-semibold mb-2">VC 洞见</h3>
         <p className="text-gray-600 dark:text-gray-400">最新的 AI 编程技巧、最佳实践和行业洞察</p>
-      </div>
-      <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+      </Link>
+      <Link href="/arsenal" className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-4xl mb-4">🔧</div>
         <h3 className="text-xl font-semibold mb-2">VC 军火库</h3>
         <p className="text-gray-600 dark:text-gray-400">精选的 AI 编程工具、插件和脚本合集</p>
-      </div>
-      <div className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+      </Link>
+      <Link href="/quests" className="text-center p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-4xl mb-4">🏆</div>
         <h3 className="text-xl font-semibold mb-2">VC 任务</h3>
         <p className="text-gray-600 dark:text-gray-400">定期的黑客松活动和技术挑战赛</p>
-      </div>
+      </Link>
     </div>
     
     {/* 社区合作伙伴 */}
@@ -84,26 +82,26 @@ const Dashboard = () => (
     
     {/* 快速导航 */}
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+      <Link href="/insights" className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">💡</div>
         <h3 className="font-semibold mb-2">VC 洞见</h3>
         <p className="text-gray-600 text-sm">浏览最新的 AI 编程文章</p>
-      </div>
-      <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+      </Link>
+      <Link href="/arsenal" className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">🔧</div>
         <h3 className="font-semibold mb-2">军火库</h3>
         <p className="text-gray-600 text-sm">下载精选编程工具</p>
-      </div>
-      <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+      </Link>
+      <Link href="/quests" className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">🏆</div>
         <h3 className="font-semibold mb-2">任务挑战</h3>
         <p className="text-gray-600 text-sm">参加黑客松活动</p>
-      </div>
-      <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+      </Link>
+      <Link href="/ecosystem" className="border rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="text-2xl mb-2">🌐</div>
         <h3 className="font-semibold mb-2">VC 伙伴</h3>
         <p className="text-gray-600 text-sm">探索 AI 公司产品</p>
-      </div>
+      </Link>
     </div>
     
     {/* 个人统计 */}
