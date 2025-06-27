@@ -1,0 +1,39 @@
+# 基于包含pandoc和LaTeX的镜像
+FROM pandoc/extra:latest
+
+# 安装Node.js和fontconfig工具
+RUN apk add --no-cache nodejs npm fontconfig
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制字体文件
+COPY fonts /app/fonts
+COPY install-fonts.sh /app/
+
+# 安装字体
+RUN chmod +x /app/install-fonts.sh && /app/install-fonts.sh
+
+# 复制package文件
+COPY package.json pnpm-lock.yaml ./
+
+# 安装pnpm
+RUN npm install -g pnpm
+
+# 安装依赖
+RUN pnpm install
+
+# 复制应用代码
+COPY . .
+
+# 复制pandoc模板
+COPY 3rd-parties/pandoc-latex-template /app/3rd-parties/pandoc-latex-template
+
+# 构建应用
+RUN pnpm build
+
+# 暴露端口
+EXPOSE 3000
+
+# 启动应用
+CMD ["pnpm", "start"]

@@ -42,3 +42,11 @@ next-env.d.ts
 postgres_data/
 .env*.local
 .idea
+
+# Fonts (large files)
+fonts/*.ttc
+fonts/*.otf
+fonts/*.ttf
+
+# Test files
+test-pandoc.js

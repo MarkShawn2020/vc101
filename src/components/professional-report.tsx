@@ -7,8 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Download, FileText, Calendar, TrendingUp, Users, Trophy, Clock, Loader2 } from 'lucide-react';
 import { getVersionedFilename } from '@/lib/version';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 import '@/styles/professional-report.css';
 
 interface ProfessionalReportProps {
@@ -26,13 +24,15 @@ export default function ProfessionalReport({ content, lastUpdated, stats }: Prof
   const [downloading, setDownloading] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
-  const handleDownload = async (format: 'html' | 'pdf') => {
+  const handleDownload = async (format: 'html' | 'latex' | 'pdf') => {
     setDownloading(true);
     try {
       const filename = getVersionedFilename('VC101_Progress_Report', format);
       
       if (format === 'pdf') {
-        await generatePDF(filename);
+        await generatePandocPDF(filename);
+      } else if (format === 'latex') {
+        await generateLaTeX(filename);
       } else if (format === 'html') {
         // 创建完整的HTML文档
         const htmlContent = `
@@ -282,117 +282,328 @@ export default function ProfessionalReport({ content, lastUpdated, stats }: Prof
     }
   };
 
-  const generatePDF = async (filename: string) => {
-    if (!reportRef.current) return;
-
-    // 创建用于PDF的特殊容器
-    const pdfContainer = document.createElement('div');
-    pdfContainer.style.position = 'absolute';
-    pdfContainer.style.top = '-9999px';
-    pdfContainer.style.left = '-9999px';
-    pdfContainer.style.width = '210mm'; // A4宽度
-    pdfContainer.style.backgroundColor = 'white';
-    pdfContainer.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif';
-    pdfContainer.style.fontSize = '14px';
-    pdfContainer.style.lineHeight = '1.6';
-    pdfContainer.style.color = '#333333';
+  // 将HTML内容转换为LaTeX格式
+  const convertHtmlToLatex = (htmlContent: string): string => {
+    // 创建临时div来解析HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
     
-    pdfContainer.innerHTML = `
-      <div style="padding: 40px;">
-        <!-- PDF Header -->
-        <div style="text-align: center; margin-bottom: 40px; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 16px;">
-          <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em;">VC101 社区进展报告</h1>
-          <p style="font-size: 18px; opacity: 0.9; margin-bottom: 24px;">全球领先的 Human-AI 协同编程社区发展报告</p>
-          <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 8px;">
-              📅 更新时间：${lastUpdated}
-            </div>
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 8px;">
-              📊 版本：v${require('../../package.json').version}
-            </div>
-            <div style="background: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 8px;">
-              🌐 VC101.com
-            </div>
-          </div>
-        </div>
+    let latexContent = '';
+    
+    const processNode = (node: Node): string => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return (node.textContent || '').trim();
+      }
+      
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node as Element;
+        const tagName = element.tagName.toLowerCase();
+        const childContent = Array.from(element.childNodes).map(processNode).join('');
+        
+        switch (tagName) {
+          case 'h1':
+            return `\\section{${childContent}}\n\n`;
+          case 'h2':
+            return `\\subsection{${childContent}}\n\n`;
+          case 'h3':
+            return `\\subsubsection{${childContent}}\n\n`;
+          case 'p':
+            return `${childContent}\n\n`;
+          case 'strong':
+          case 'b':
+            return `\\textbf{${childContent}}`;
+          case 'em':
+          case 'i':
+            return `\\textit{${childContent}}`;
+          case 'code':
+            return `\\texttt{${childContent}}`;
+          case 'ul':
+            return `\\begin{itemize}\n${childContent}\\end{itemize}\n\n`;
+          case 'ol':
+            return `\\begin{enumerate}\n${childContent}\\end{enumerate}\n\n`;
+          case 'li':
+            return `\\item ${childContent}\n`;
+          case 'blockquote':
+            return `\\begin{quote}\n${childContent}\n\\end{quote}\n\n`;
+          case 'pre':
+            return `\\begin{verbatim}\n${childContent}\n\\end{verbatim}\n\n`;
+          default:
+            return childContent;
+        }
+      }
+      
+      return '';
+    };
+    
+    latexContent = processNode(tempDiv);
+    
+    // 清理特殊字符
+    latexContent = latexContent
+      .replace(/&/g, '\\&')
+      .replace(/%/g, '\\%')
+      .replace(/\$/g, '\\$')
+      .replace(/#/g, '\\#')
+      .replace(/_/g, '\\_')
+      .replace(/\{/g, '\\{')
+      .replace(/\}/g, '\\}')
+      .replace(/\^/g, '\\textasciicircum{}')
+      .replace(/~/g, '\\textasciitilde{}');
+    
+    return latexContent;
+  };
 
-        <!-- Stats Grid -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 40px 0;">
-          <div style="text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0;">
-            <div style="font-size: 48px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${stats.users.toLocaleString()}</div>
-            <div style="color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 14px;">注册用户</div>
-          </div>
-          <div style="text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0;">
-            <div style="font-size: 48px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${stats.articles}</div>
-            <div style="color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 14px;">技术文章</div>
-          </div>
-          <div style="text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0;">
-            <div style="font-size: 48px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${stats.tools}</div>
-            <div style="color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 14px;">开源工具</div>
-          </div>
-          <div style="text-align: center; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0;">
-            <div style="font-size: 48px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${stats.hackathons}</div>
-            <div style="color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 14px;">黑客松</div>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div style="background: white; padding: 48px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0; margin: 40px 0;">
-          <div style="
-            max-width: none;
-            line-height: 1.7;
-          ">
-            ${content.replace(/class="[^"]*"/g, '').replace(/<img[^>]*>/g, '')}
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div style="text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
-          <p style="font-weight: 700; font-size: 18px; margin-bottom: 8px;">VC101 - Code with the Vibe, Build with the Future</p>
-          <p style="margin-bottom: 8px;">© 2025 VC101 Community. All rights reserved.</p>
-          <p style="color: #64748b;">🌐 vc101.com | 📧 contact@vc101.com</p>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(pdfContainer);
-
+  // 生成LaTeX文档
+  const generateLaTeX = async (filename: string) => {
     try {
-      const canvas = await html2canvas(pdfContainer, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        width: 794, // A4 width in pixels at 96 DPI
-        windowWidth: 794,
+      const latexContent = convertHtmlToLatex(content);
+      
+      const latexDocument = `\\documentclass[12pt,a4paper]{article}
+
+% 中文支持
+\\usepackage{ctex}
+\\usepackage[UTF8]{ctex}
+
+% 页面设置
+\\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+\\usepackage{setspace}
+\\onehalfspacing
+
+% 字体和颜色
+\\usepackage{xcolor}
+\\usepackage{fontspec}
+\\setmainfont{Times New Roman}
+\\setCJKmainfont{SimSun}
+
+% 图表和表格
+\\usepackage{graphicx}
+\\usepackage{booktabs}
+\\usepackage{longtable}
+\\usepackage{array}
+
+% 代码高亮
+\\usepackage{listings}
+\\usepackage{fancyvrb}
+
+% 链接
+\\usepackage{hyperref}
+\\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% 标题格式
+\\usepackage{titlesec}
+\\titleformat{\\section}{\\Large\\bfseries\\color{blue}}{\\thesection}{1em}{}
+\\titleformat{\\subsection}{\\large\\bfseries\\color{gray}}{\\thesubsection}{1em}{}
+
+% 页眉页脚
+\\usepackage{fancyhdr}
+\\pagestyle{fancy}
+\\fancyhf{}
+\\fancyhead[L]{VC101 社区进展报告}
+\\fancyhead[R]{v${require('../../package.json').version}}
+\\fancyfoot[C]{\\thepage}
+\\fancyfoot[L]{VC101 - Code with the Vibe, Build with the Future}
+\\fancyfoot[R]{${lastUpdated}}
+
+% 文档开始
+\\begin{document}
+
+% 标题页
+\\begin{titlepage}
+    \\centering
+    \\vspace*{2cm}
+    
+    {\\Huge\\bfseries\\color{blue} VC101 社区进展报告}
+    
+    \\vspace{1cm}
+    
+    {\\Large 全球领先的 Human-AI 协同编程社区发展报告}
+    
+    \\vspace{2cm}
+    
+    \\begin{tabular}{ll}
+        \\textbf{更新时间:} & ${lastUpdated} \\\\[0.5cm]
+        \\textbf{版本:} & v${require('../../package.json').version} \\\\[0.5cm]
+        \\textbf{官方网站:} & \\href{https://vc101.com}{vc101.com} \\\\
+    \\end{tabular}
+    
+    \\vfill
+    
+    {\\large VC101 Community}
+    
+    \\vspace{1cm}
+    
+    {\\today}
+\\end{titlepage}
+
+% 目录
+\\tableofcontents
+\\newpage
+
+% 社区统计概览
+\\section{社区统计概览}
+
+\\begin{center}
+\\begin{tabular}{|l|c|l|}
+\\hline
+\\textbf{指标} & \\textbf{数量} & \\textbf{说明} \\\\
+\\hline
+注册用户 & ${stats.users.toLocaleString()} & +23\\% 月增长 \\\\
+\\hline
+技术文章 & ${stats.articles} & 高质量内容 \\\\
+\\hline
+开源工具 & ${stats.tools} & 实用工具集 \\\\
+\\hline
+黑客松 & ${stats.hackathons} & 成功举办 \\\\
+\\hline
+\\end{tabular}
+\\end{center}
+
+\\section{详细发展报告}
+
+${latexContent}
+
+% 结尾
+\\vfill
+\\begin{center}
+\\rule{0.8\\textwidth}{0.4pt}
+
+\\textbf{VC101 - Code with the Vibe, Build with the Future}
+
+© 2025 VC101 Community. All rights reserved.
+
+\\href{mailto:contact@vc101.com}{contact@vc101.com} | \\href{https://vc101.com}{vc101.com}
+\\end{center}
+
+\\end{document}`;
+
+      // 下载LaTeX源文件
+      const blob = new Blob([latexDocument], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename.replace('.tex', '') + '.tex';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+    } catch (error) {
+      console.error('LaTeX生成失败:', error);
+      throw error;
+    }
+  };
+
+  // 使用Pandoc生成PDF
+  const generatePandocPDF = async (filename: string) => {
+    try {
+      // 将HTML内容转换为纯文本markdown
+      const markdownContent = convertHtmlToMarkdown(content);
+      
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content: markdownContent,
+          title: 'VC101 社区进展报告',
+          author: 'VC101 Community',
+          lastUpdated,
+          version: require('../../package.json').version,
+          stats,
+        }),
       });
 
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      let position = 0;
-
-      // 添加第一页
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // 如果内容超过一页，添加更多页面
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.details || 'PDF generation failed');
       }
 
-      pdf.save(filename);
-    } finally {
-      document.body.removeChild(pdfContainer);
+      // 下载PDF文件
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+    } catch (error) {
+      console.error('Pandoc PDF生成失败:', error);
+      throw error;
     }
+  };
+
+  // 将HTML内容转换为Markdown格式
+  const convertHtmlToMarkdown = (htmlContent: string): string => {
+    // 创建临时div来解析HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    
+    let markdownContent = '';
+    
+    const processNode = (node: Node): string => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return (node.textContent || '').trim();
+      }
+      
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node as Element;
+        const tagName = element.tagName.toLowerCase();
+        const childContent = Array.from(element.childNodes).map(processNode).join('');
+        
+        switch (tagName) {
+          case 'h1':
+            return `\n# ${childContent}\n\n`;
+          case 'h2':
+            return `\n## ${childContent}\n\n`;
+          case 'h3':
+            return `\n### ${childContent}\n\n`;
+          case 'p':
+            return `${childContent}\n\n`;
+          case 'strong':
+          case 'b':
+            return `**${childContent}**`;
+          case 'em':
+          case 'i':
+            return `*${childContent}*`;
+          case 'code':
+            return `\`${childContent}\``;
+          case 'ul':
+            return `\n${childContent}\n`;
+          case 'ol':
+            return `\n${childContent}\n`;
+          case 'li':
+            return `- ${childContent}\n`;
+          case 'blockquote':
+            return `\n> ${childContent}\n\n`;
+          case 'pre':
+            return `\n\`\`\`\n${childContent}\n\`\`\`\n\n`;
+          case 'br':
+            return '\n';
+          default:
+            return childContent;
+        }
+      }
+      
+      return '';
+    };
+    
+    markdownContent = processNode(tempDiv);
+    
+    // 清理多余的空行
+    markdownContent = markdownContent
+      .replace(/\n\n\n+/g, '\n\n')
+      .replace(/^\n+/, '')
+      .replace(/\n+$/, '');
+    
+    return markdownContent;
   };
 
   return (
@@ -491,10 +702,10 @@ export default function ProfessionalReport({ content, lastUpdated, stats }: Prof
           <div>
             <h3 className="text-lg font-semibold mb-2">导出报告</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              下载完整的社区进展报告，支持PDF和HTML格式
+              下载完整的社区进展报告，支持多种专业格式
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <Button
               onClick={() => handleDownload('pdf')}
               disabled={downloading}
@@ -513,14 +724,64 @@ export default function ProfessionalReport({ content, lastUpdated, stats }: Prof
               )}
             </Button>
             <Button
+              onClick={() => handleDownload('latex')}
+              disabled={downloading}
+              variant="outline"
+              className="gap-2"
+            >
+              <FileText className="h-4 w-4" />
+              LaTeX 源码
+            </Button>
+            <Button
               onClick={() => handleDownload('html')}
               disabled={downloading}
               variant="outline"
               className="gap-2"
             >
               <FileText className="h-4 w-4" />
-              下载 HTML
+              HTML 格式
             </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* PDF 生成说明 */}
+      <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+            <Download className="h-5 w-5 text-blue-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold mb-2 text-blue-800 dark:text-blue-200">📄 专业PDF生成</h3>
+            <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+              我们使用 <strong>Pandoc + Eisvogel</strong> 模板生成专业级PDF报告：
+            </p>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  <strong>完美中文支持：</strong>使用 XeLaTeX 引擎，完美渲染中文字符
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  <strong>专业排版：</strong>基于LaTeX的学术级文档排版系统
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  <strong>可选中文字：</strong>生成的PDF支持文字选择和复制
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  <strong>LaTeX源码：</strong>如需自定义，可下载LaTeX源码进行编辑
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </Card>
