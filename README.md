@@ -1,25 +1,70 @@
 # VC101
 
 <div align="center">
-  <img src="./public/logo.png" alt="VC101 Logo" width="120" height="120" />
+  <h1 style="color: #6366f1; font-size: 4rem; font-weight: bold; margin: 2rem 0;">VC101</h1>
+  <h2 style="color: #6b7280; font-size: 1.5rem; margin-bottom: 2rem;">Code with the Vibe, Build with the Future</h2>
+  <p style="color: #6b7280; font-size: 1.1rem; margin-bottom: 3rem;">全球领先的 Human-AI 协同编程社区，连接对 AI 编程充满热情的开发者，分享前沿工具、最佳实践和创新解决方案。</p>
+  
+  <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem;">
+    <button style="background: #000; color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: 500;">💬 加入社群</button>
+    <button style="background: #f3f4f6; color: #374151; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: 500;">📊 查看报告</button>
+  </div>
 </div>
 
-<h1 align="center">VC101 - Vibe Coding 101</h1>
+## 🏘️ 社区概览
 
-<p align="center">
-  <strong>"Code with the Vibe, Build with the Future."</strong>
-</p>
+见证全球领先的 Human-AI 协同编程社区的成长历程
 
-<p align="center">
-  与 AI 共鸣，创未来代码 | 全球领先的 Human-AI 协同编程社区
-</p>
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<div style="background: #3b82f6; color: white; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem;">
+<div style="font-size: 2rem;">👥</div>
+<div><strong>注册用户</strong></div>
+<div style="font-size: 1.5rem; font-weight: bold;">1,247</div>
+<div style="font-size: 0.875rem;">+23% 月增长</div>
+</div>
+</td>
+<td align="center">
+<div style="background: #10b981; color: white; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem;">
+<div style="font-size: 2rem;">📝</div>
+<div><strong>技术文章</strong></div>
+<div style="font-size: 1.5rem; font-weight: bold;">89</div>
+<div style="font-size: 0.875rem;">高质量内容</div>
+</div>
+</td>
+<td align="center">
+<div style="background: #8b5cf6; color: white; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem;">
+<div style="font-size: 2rem;">⚡</div>
+<div><strong>开源工具</strong></div>
+<div style="font-size: 1.5rem; font-weight: bold;">23</div>
+<div style="font-size: 0.875rem;">实用工具链</div>
+</div>
+</td>
+<td align="center">
+<div style="background: #f59e0b; color: white; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem;">
+<div style="font-size: 2rem;">🏆</div>
+<div><strong>黑客松</strong></div>
+<div style="font-size: 1.5rem; font-weight: bold;">8</div>
+<div style="font-size: 0.875rem;">成功举办</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 
-<p align="center">
-  <a href="#关于我们"><strong>关于我们</strong></a> ·
-  <a href="#核心功能"><strong>核心功能</strong></a> ·
-  <a href="#本地开发"><strong>本地开发</strong></a> ·
-  <a href="#加入社区"><strong>加入社区</strong></a>
-</p>
+### 📈 近期成就
+- ✅ Monaco Editor 专业代码编辑器集成
+- ✅ JudgeO 在线代码执行系统
+- ✅ 8种编程语言支持
+- 🔄 AI助手集成开发中
+
+### 🚀 即将推出
+- **Q3** AI编程助手集成
+- **Q3** 个性化学习路径
+- **Q4** 实时协作编程
+- **Q4** 移动端原生App
 
 ## 关于我们
 
@@ -41,17 +86,51 @@ VC101 是一个专注于 Human-AI 协同编程的社区平台。我们不只关�
 
 ## 核心功能
 
-### 🧠 Vibe 洞见 (Insights)
-AI 编程领域的深度分析文章，支持 Markdown 格式和代码高亮，涵盖 Prompt 技巧、工具评测、项目实战等内容。
+<div align="center">
+<table>
+<tr>
+<td align="center" width="300">
+<div style="padding: 2rem; margin: 1rem;">
+<div style="font-size: 4rem; margin-bottom: 1rem;">💡</div>
+<h3><strong>VC 洞见</strong></h3>
+<p>最新的 AI 编程技巧，最佳实践和行业观察</p>
+</div>
+</td>
+<td align="center" width="300">
+<div style="padding: 2rem; margin: 1rem;">
+<div style="font-size: 4rem; margin-bottom: 1rem;">🛠️</div>
+<h3><strong>VC 军火库</strong></h3>
+<p>精选的 AI 编程工具、插件和脚本合集</p>
+</div>
+</td>
+<td align="center" width="300">
+<div style="padding: 2rem; margin: 1rem;">
+<div style="font-size: 4rem; margin-bottom: 1rem;">🏆</div>
+<h3><strong>VC 黑客松</strong></h3>
+<p>定期的黑客松活动和技术挑战赛</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 
-### 🔧 开发者军火库 (Arsenal)  
-精心策划的 AI 编程工具和资源集合，提供详细介绍、下载方式、评分系统，支持按 AI 模型和工具类别筛选。
+## VC 伙伴
 
-### 🏆 Vibe 任务 (Quests)
-定期举办的黑客松活动，展示优秀项目和获胜团队，形成开发者"荣誉殿堂"。
-
-### 🌐 生态伙伴 (Ecosystem)
-展示与 AI 编程相关的公司、产品和 API，帮助开发者快速了解和选型。
+<div align="center">
+<table>
+<tr>
+<td align="center"><strong>WayToAGI</strong></td>
+<td align="center"><strong>AI产品榜</strong></td>
+<td align="center"><strong>火山</strong></td>
+<td align="center"><strong>百度</strong></td>
+<td align="center"><strong>腾讯</strong></td>
+<td align="center"><strong>阿里</strong></td>
+<td align="center"><strong>ShareAI</strong></td>
+<td align="center"><strong>Grimo</strong></td>
+<td align="center"><strong>Neurora</strong></td>
+</tr>
+</table>
+</div>
 
 ## 本地开发
 
