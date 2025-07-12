@@ -1,6 +1,7 @@
 # VC101
 
 <div align="center">
+  <img src="./public/logo.png" alt="VC101 Logo" width="120" height="120" style="margin-bottom: 2rem;" />
   <h1 style="color: #6366f1; font-size: 4rem; font-weight: bold; margin: 2rem 0;">VC101</h1>
   <h2 style="color: #6b7280; font-size: 1.5rem; margin-bottom: 2rem;">Code with the Vibe, Build with the Future</h2>
   <p style="color: #6b7280; font-size: 1.1rem; margin-bottom: 3rem;">全球领先的 Human-AI 协同编程社区，连接对 AI 编程充满热情的开发者，分享前沿工具、最佳实践和创新解决方案。</p>
@@ -12,6 +13,10 @@
 </div>
 
 ## 🏘️ 社区概览
+
+<div align="center">
+  <img src="./public/opengraph-image.png" alt="VC101 社区概览" width="600" style="margin: 1rem 0; border-radius: 0.5rem;" />
+</div>
 
 见证全球领先的 Human-AI 协同编程社区的成长历程
 
@@ -157,6 +162,11 @@ pnpm dev
 - 🔗 **GitHub**: [github.com/the-vc101](https://github.com/the-vc101)
 - 💬 **微信社群**: 扫码加入我们的微信群
 - 📧 **邮箱**: contact@vc101.com
+
+<div align="center">
+  <img src="./public/wechat-group-qrcode.JPG" alt="微信群二维码" width="200" height="200" style="margin: 1rem;" />
+  <p><em>扫描二维码加入 VC101 微信社群</em></p>
+</div>
 
 ## 技术栈
 
