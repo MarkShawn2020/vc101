@@ -73,6 +73,9 @@ export default function RootLayout({
                       <Link href="/hackathon" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         💻 VC 黑客松
                       </Link>
+                      <Link href="/claude-code" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
+                        🤖 Claude Code
+                      </Link>
                       <Link href="/ecosystem" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         🌐 VC 伙伴
                       </Link>
@@ -110,6 +113,11 @@ export default function RootLayout({
                           <DropdownMenuItem asChild>
                             <Link href="/hackathon" className="w-full flex items-center gap-2 min-h-[44px] py-3">
                               💻 VC 黑客松
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/claude-code" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              🤖 Claude Code
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>

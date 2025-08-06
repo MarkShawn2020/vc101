@@ -1,3 +1,12 @@
 [submodule "3rd-parties/pandoc-latex-template"]
 	path = 3rd-parties/pandoc-latex-template
 	url = git@github.com:Wandmalfarbe/pandoc-latex-template.git
+[submodule "external/awesome-claude-code"]
+	path = external/awesome-claude-code
+	url = git@github.com:hesreallyhim/awesome-claude-code.git
+[submodule "external/claude-code-docs"]
+	path = external/claude-code-docs
+	url = git@github.com:ericbuess/claude-code-docs.git
+[submodule "external/SuperClaude_Framework"]
+	path = external/SuperClaude_Framework
+	url = git@github.com:SuperClaude-Org/SuperClaude_Framework.git

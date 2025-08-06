@@ -15,7 +15,7 @@
 ## 🏘️ 社区概览
 
 <div align="center">
-  <img src="./public/opengraph-image.png" alt="VC101 社区概览" width="600" style="margin: 1rem 0; border-radius: 0.5rem;" />
+  <img src="./public/vc101-community-screenshot.png" alt="VC101 社区数据概览" width="800" style="margin: 1rem 0; border-radius: 0.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
 </div>
 
 见证全球领先的 Human-AI 协同编程社区的成长历程
