@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Vibe智库 - AI增强型知识组织引擎 | VC101',
+  title: '知识库 - AI增强型知识组织引擎 | VibeGenius',
   description: '团队协作的AI知识管理平台，追踪大模型理论、AI Agent产品和商业模式的前沿动态',
 };
 
@@ -103,7 +103,7 @@ export default function VibeTankPage() {
             </div>
             
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Vibe智库
+              知识库
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">

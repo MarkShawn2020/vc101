@@ -11,11 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const navItems = [
-  { href: '/vibe-tank', label: '智库', icon: '🧠' },
-  { href: '/playground', label: '工坊', icon: '⚡' },
+  { href: '/vibe-tank', label: '知识库', icon: '🧠' },
+  { href: '/hackathon', label: '黑客松', icon: '⚡' },
   { href: '/community', label: '社区', icon: '💬' },
   { href: '/ecosystem', label: '生态', icon: '🌐' },
-  { href: '/pricing', label: '定价', icon: '💎' },
 ];
 
 export default function MainNavigation() {
