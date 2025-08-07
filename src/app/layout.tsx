@@ -85,7 +85,7 @@ export default function RootLayout({
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    VC101 Community
+                    VibeGenius Community
                   </a>
                 </p>
                 <ThemeSwitcher />
