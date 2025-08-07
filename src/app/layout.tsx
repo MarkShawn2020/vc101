@@ -64,6 +64,9 @@ export default function RootLayout({
                     
                     {/* 桌面端导航菜单 */}
                     <nav className="hidden md:flex items-center gap-6 text-sm">
+                      <Link href="/vibe-tank" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
+                        🧠 Vibe智库
+                      </Link>
                       <Link href="/insights" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
                         💡 VC 洞见
                       </Link>
@@ -100,6 +103,11 @@ export default function RootLayout({
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start" className="w-56">
+                          <DropdownMenuItem asChild>
+                            <Link href="/vibe-tank" className="w-full flex items-center gap-2 min-h-[44px] py-3">
+                              🧠 Vibe智库
+                            </Link>
+                          </DropdownMenuItem>
                           <DropdownMenuItem asChild>
                             <Link href="/insights" className="w-full flex items-center gap-2 min-h-[44px] py-3">
                               💡 VC 洞见
