@@ -14,6 +14,7 @@ import {
   Brain,
   BookOpen
 } from 'lucide-react';
+import PageHeader from '@/components/page-header';
 import { EVALUATION_CRITERIA, CATEGORY_LABELS } from '@/types/vibe-tank';
 import type { KnowledgeCategory } from '@/types/vibe-tank';
 
@@ -103,16 +104,12 @@ export default function DailyPicksPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <Calendar className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold">每日精选</h1>
-        </div>
-        <p className="text-muted-foreground">
-          AI自动筛选的高价值内容，帮助团队快速了解最重要的行业动态
-        </p>
-      </div>
+      {/* Page Header */}
+      <PageHeader 
+        title="每日精选"
+        description="AI自动筛选的高价值内容，帮助团队快速了解最重要的行业动态"
+        icon={<Calendar className="w-8 h-8" />}
+      />
 
       {/* Date Selector and Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">

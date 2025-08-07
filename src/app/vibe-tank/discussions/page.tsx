@@ -15,6 +15,7 @@ import {
   ArrowUpDown,
   Pin
 } from 'lucide-react';
+import PageHeader from '@/components/page-header';
 import { EVALUATION_CRITERIA, CATEGORY_LABELS } from '@/types/vibe-tank';
 import type { KnowledgeCategory } from '@/types/vibe-tank';
 
@@ -157,16 +158,12 @@ export default function DiscussionsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <MessageSquare className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold">观点碰撞区</h1>
-        </div>
-        <p className="text-muted-foreground">
-          团队成员从不同视角评估内容，促进多元观点的交流与碰撞
-        </p>
-      </div>
+      {/* Page Header */}
+      <PageHeader 
+        title="观点碰撞区"
+        description="团队成员从不同视角评估内容，促进多元观点的交流与碰撞"
+        icon={<MessageSquare className="w-8 h-8" />}
+      />
 
       {/* Filters and Sorting */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">

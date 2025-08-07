@@ -24,48 +24,48 @@ export default function VibeTankPage() {
       description: 'AI自动筛选的高价值内容推荐',
       icon: Calendar,
       href: '/vibe-tank/daily',
-      color: 'bg-blue-500',
-      stats: '更新中'
+      color: 'from-blue-500 to-blue-600',
+      stats: '今日10篇'
     },
     {
       title: '观点碰撞区',
       description: '团队成员多视角讨论与交流',
       icon: MessageSquare,
       href: '/vibe-tank/discussions',
-      color: 'bg-purple-500',
-      stats: '活跃讨论'
+      color: 'from-purple-500 to-purple-600',
+      stats: '156条讨论'
     },
     {
       title: '追溯地图',
       description: '知识演进的可视化图谱',
       icon: Network,
       href: '/vibe-tank/graph',
-      color: 'bg-green-500',
-      stats: '知识网络'
+      color: 'from-green-500 to-green-600',
+      stats: '89个节点'
     },
     {
       title: '知识库',
       description: '全部知识条目的检索与管理',
       icon: Database,
       href: '/vibe-tank/knowledge',
-      color: 'bg-orange-500',
-      stats: '持续增长'
+      color: 'from-orange-500 to-orange-600',
+      stats: '1,247条'
     },
     {
       title: '个人视角',
       description: '定制化的评估维度与推荐设置',
       icon: Settings,
       href: '/vibe-tank/perspectives',
-      color: 'bg-pink-500',
-      stats: '个性定制'
+      color: 'from-pink-500 to-pink-600',
+      stats: '3个视角'
     },
     {
       title: '趋势洞察',
       description: '领域发展趋势与数据分析',
       icon: TrendingUp,
       href: '/vibe-tank/insights',
-      color: 'bg-indigo-500',
-      stats: '数据驱动'
+      color: 'from-indigo-500 to-indigo-600',
+      stats: '实时更新'
     }
   ];
 
@@ -178,20 +178,27 @@ export default function VibeTankPage() {
             <Link 
               key={feature.href}
               href={feature.href}
-              className="group bg-card rounded-xl p-6 border hover:shadow-xl transition-all hover:-translate-y-1"
+              className="group relative bg-card rounded-xl p-6 border hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`p-3 rounded-lg ${feature.color} bg-opacity-10`}>
-                  <feature.icon className={`w-6 h-6 text-white ${feature.color} bg-clip-padding`} />
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity`} />
+              
+              <div className="relative">
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`p-3 rounded-lg bg-gradient-to-br ${feature.color} shadow-lg`}>
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded">
+                    {feature.stats}
+                  </span>
                 </div>
-                <span className="text-xs text-muted-foreground">{feature.stats}</span>
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {feature.description}
-              </p>
             </Link>
           ))}
         </div>

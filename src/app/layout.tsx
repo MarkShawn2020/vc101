@@ -4,17 +4,11 @@ import HeaderAuth from "@/components/header-auth";
 import Logo from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import VersionBadge from "@/components/version-badge";
+import MainNavigation from "@/components/main-navigation";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -23,8 +17,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "VC101 - Vibe Coding 101",
-  description: "Code with the Vibe, Build with the Future - 全球领先的 Human-AI 协同编程社区",
+  title: "VibeGenius - Where Intelligence Connects",
+  description: "AI增强型智能知识平台 - 打造人机协同的知识管理新纪元，让每个人都能与AI一起创造卓越",
 };
 
 const geistSans = Geist({
@@ -59,93 +53,13 @@ export default function RootLayout({
                       className="flex items-center gap-2 text-lg sm:text-base font-semibold hover:opacity-70 transition-opacity"
                     >
                       {/*<Logo mode="png" className="h-8 w-auto" color="currentColor" />*/}
-                      <span>VC101</span>
+                      <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                        VibeGenius
+                      </span>
                     </Link>
                     
-                    {/* 桌面端导航菜单 */}
-                    <nav className="hidden md:flex items-center gap-6 text-sm">
-                      <Link href="/vibe-tank" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        🧠 Vibe智库
-                      </Link>
-                      <Link href="/insights" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        💡 VC 洞见
-                      </Link>
-                      <Link href="/arsenal" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        🔧 VC 军火库
-                      </Link>
-                      <Link href="/hackathon" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        💻 VC 黑客松
-                      </Link>
-                      <Link href="/claude-code" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        🤖 Claude Code
-                      </Link>
-                      <Link href="/ecosystem" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        🌐 VC 伙伴
-                      </Link>
-                      <Link href="/resources" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        📚 VC 资源中心
-                      </Link>
-                      <Link href="/report" className="hover:text-primary transition-colors min-h-[44px] flex items-center px-2 py-1">
-                        📊 发展报告
-                      </Link>
-                    </nav>
-                    
-                    {/* 移动端导航菜单 */}
-                    <div className="md:hidden">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="w-11 h-11">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <line x1="3" x2="21" y1="6" y2="6"/>
-                              <line x1="3" x2="21" y1="12" y2="12"/>
-                              <line x1="3" x2="21" y1="18" y2="18"/>
-                            </svg>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start" className="w-56">
-                          <DropdownMenuItem asChild>
-                            <Link href="/vibe-tank" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              🧠 Vibe智库
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/insights" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              💡 VC 洞见
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/arsenal" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              🔧 VC 军火库
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/hackathon" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              💻 VC 黑客松
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/claude-code" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              🤖 Claude Code
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/ecosystem" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              🌐 VC 伙伴
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/resources" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              📚 VC 资源中心
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/report" className="w-full flex items-center gap-2 min-h-[44px] py-3">
-                              📊 发展报告
-                            </Link>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
+                    {/* Navigation Component */}
+                    <MainNavigation />
                   </div>
                   
                   <div className="flex items-center gap-2 sm:gap-4">
@@ -158,7 +72,7 @@ export default function RootLayout({
                   </div>
                 </div>
               </nav>
-              <div className="flex flex-col gap-8 md:gap-20 w-full max-w-5xl px-4 sm:px-5">
+              <div className="flex flex-col w-full">
                 {children}
               </div>
 

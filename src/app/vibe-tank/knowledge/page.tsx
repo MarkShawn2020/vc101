@@ -21,6 +21,7 @@ import {
   SortAsc,
   SortDesc
 } from 'lucide-react';
+import PageHeader from '@/components/page-header';
 import { CATEGORY_LABELS, EVALUATION_CRITERIA } from '@/types/vibe-tank';
 import type { KnowledgeItem, KnowledgeCategory } from '@/types/vibe-tank';
 
@@ -144,16 +145,12 @@ export default function KnowledgePage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <Database className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold">知识库</h1>
-        </div>
-        <p className="text-muted-foreground">
-          浏览、搜索和管理所有知识条目，构建团队的认知资产
-        </p>
-      </div>
+      {/* Page Header */}
+      <PageHeader 
+        title="知识库"
+        description="浏览、搜索和管理所有知识条目，构建团队的认知资产"
+        icon={<Database className="w-8 h-8" />}
+      />
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
